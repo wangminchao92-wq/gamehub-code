@@ -1,0 +1,52 @@
+# GameHub - IGN风格游戏门户网站
+
+> GameHub是一个现代化的游戏资讯门户网站，采用IGN风格设计，提供游戏新闻、评测、攻略、视频、社区和商店等功能。网站采用Next.js 14构建，支持响应式设计、多语言界面和LLM友好内容。
+
+GameHub致力于为游戏玩家提供一站式游戏资讯服务，包括：
+- 最新的游戏新闻和行业动态
+- 专业的游戏评测和评分
+- 详细的游戏攻略和指南
+- 高质量的游戏视频内容
+- 活跃的游戏玩家社区
+- 正版游戏购买平台
+
+网站采用现代化的技术栈：Next.js 14、React 18、TypeScript、Tailwind CSS，确保高性能和优秀的用户体验。
+
+## 核心功能
+
+- [首页](https://gamehub.example.com/index.html.md): 网站主页面，展示热门游戏和最新资讯
+- [新闻](https://gamehub.example.com/news/index.html.md): 游戏行业新闻和动态报道
+- [评测](https://gamehub.example.com/reviews/index.html.md): 专业游戏评测和评分系统
+- [攻略](https://gamehub.example.com/guides/index.html.md): 游戏攻略、技巧和指南
+- [视频](https://gamehub.example.com/videos/index.html.md): 游戏视频、直播和幕后内容
+- [社区](https://gamehub.example.com/community/index.html.md): 玩家交流、分享和讨论平台
+- [商店](https://gamehub.example.com/store/index.html.md): 正版游戏购买和特价优惠
+
+## 技术文档
+
+- [API文档](https://gamehub.example.com/api/docs.html.md): 后端API接口文档
+- [开发指南](https://gamehub.example.com/docs/development.html.md): 网站开发和技术架构说明
+- [部署指南](https://gamehub.example.com/docs/deployment.html.md): 生产环境部署和配置指南
+- [贡献指南](https://gamehub.example.com/docs/contributing.html.md): 贡献代码和参与开发的指南
+
+## 内容结构
+
+- [新闻分类](https://gamehub.example.com/news/categories.html.md): 新闻内容分类和标签系统
+- [评测标准](https://gamehub.example.com/reviews/standards.html.md): 游戏评测标准和评分体系
+- [攻略分类](https://gamehub.example.com/guides/categories.html.md): 攻略内容分类和难度分级
+- [视频分类](https://gamehub.example.com/videos/categories.html.md): 视频内容分类和播放指南
+
+## 用户指南
+
+- [注册登录](https://gamehub.example.com/docs/registration.html.md): 用户注册和登录流程说明
+- [个人中心](https://gamehub.example.com/docs/profile.html.md): 个人资料和设置管理
+- [社区规则](https://gamehub.example.com/docs/community-rules.html.md): 社区行为规范和指南
+- [购买指南](https://gamehub.example.com/docs/purchase-guide.html.md): 游戏购买流程和注意事项
+
+## Optional
+
+- [设计系统](https://gamehub.example.com/docs/design-system.html.md): 网站UI设计规范和组件库
+- [性能优化](https://gamehub.example.com/docs/performance.html.md): 网站性能优化策略
+- [SEO指南](https://gamehub.example.com/docs/seo.html.md): 搜索引擎优化最佳实践
+- [多语言支持](https://gamehub.example.com/docs/i18n.html.md): 多语言界面实现方案
+- [无障碍访问](https://gamehub.example.com/docs/accessibility.html.md): 无障碍访问支持说明

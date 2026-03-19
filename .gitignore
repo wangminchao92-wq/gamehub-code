@@ -1,0 +1,85 @@
+# Dependencies
+node_modules/
+.npm
+.pnpm
+.yarn/
+.yarn.lock
+
+# Next.js
+.next/
+out/
+
+# Build
+dist/
+build/
+
+# Environment
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+*.log
+logs/
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage
+coverage/
+.nyc_output
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+jest.config.js
+cypress/
+
+# Package files
+package-lock.json
+yarn.lock
+
+# Large files
+*.tar.gz
+*.zip
+
+# Frontend specific
+frontend/.next/
+frontend/node_modules/
+frontend/package-lock.json
+
+# Temporary files
+tmp/
+temp/
+
+# Documentation
+*.md.bak
+
+# Local deployment files
+DEPLOYMENT_STATUS.md
+DEPLOYMENT_TEST_REPORT.md
+LLMSTXT_COMPLIANCE_REPORT.md
+OPTIMIZATION_REPORT.md
+TEST_REPORT.md
+SEO_ADJUSTMENT_COMPLETE_REPORT.md
+SEO_MONITOR.sh
+SEO_QUICK_TEST.sh
+LOCAL_DEPLOYMENT_TEST.sh
+verify_deployment.sh
+verify_llmstxt.sh
+
+# Archive files
+gamehub_complete_*/
