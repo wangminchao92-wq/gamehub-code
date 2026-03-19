@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { useEffect } from 'react';
 import Head from 'next/head';
+import { Analytics } from '@vercel/analytics/next';
 
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -53,6 +54,7 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       <ThemeProvider>
         <Component {...pageProps} />
+        <Analytics />
       </ThemeProvider>
     </>
   );
