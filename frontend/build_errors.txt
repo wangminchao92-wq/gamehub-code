@@ -1,0 +1,1 @@
+Type error: Type '{ rel: string; href: string; hreflang: string; }' is not assignable to type 'DetailedHTMLProps<LinkHTMLAttributes<HTMLLinkElement>, HTMLLinkElement>'.
