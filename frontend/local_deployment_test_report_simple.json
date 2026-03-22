@@ -1,0 +1,185 @@
+{
+  "timestamp": "2026-03-22T14:18:31.490Z",
+  "totalTests": 23,
+  "passedTests": 14,
+  "failedTests": 9,
+  "passRate": 60.86956521739131,
+  "totalTime": 0.063,
+  "details": [
+    {
+      "name": "服务器健康检查",
+      "passed": false,
+      "timestamp": "2026-03-22T14:18:31.443Z",
+      "statusCode": 500,
+      "response": "<!DOCTYPE html><html data-critters-container><head><style data-next-hide-fouc=\"true\">body{display:none}</style><noscript data-next-hide-fouc=\"true\"><style>body{display:block}</style></noscript><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width\"><meta name=\"next-head-count\" content=\"2\"><script defer nomodule src=\"/_next/static/chunks/polyfills.js\"></script><script src=\"/_next/static/chunks/fallback/webpack.js\" defer></script><script src=\"/_next/static/chunks/fallback/main.js\" defer></script><script src=\"/_next/static/chunks/fallback/pages/_app.js\" defer></script><script src=\"/_next/static/chunks/fallback/pages/_error.js\" defer></script><noscript data-n-css></noscript><noscript id=\"__next_css__DO_NOT_USE__\"></noscript></head><body><div id=\"__next\"></div><script src=\"/_next/static/chunks/fallback/react-refresh.js\"></script><script id=\"__NEXT_DATA__\" type=\"application/json\">{\"props\":{\"pageProps\":{\"statusCode\":500}},\"page\":\"/_error\",\"query\":{},\"buildId\":\"development\",\"isFallback\":false,\"err\":{\"name\":\"ModuleBuildError\",\"source\":\"server\",\"message\":\"Module build failed (from ./node_modules/next/dist/build/webpack/loaders/next-swc-loader.js):\\nError: \\n  x the name `targetUserId` is defined multiple times\\n     ,-[/Users/mac/.openclaw/workspace/gamehub-project/frontend/src/pages/api/follow/index.ts:366:1]\\n 366 |           limit = '50',\\n 367 |           offset = '0',\\n 368 |           search = '',\\n 369 |           targetUserId,\\n     :           ^^^^^^|^^^^^\\n     :                 `-- previous definition of `targetUserId` here\\n 370 |         } = req.query;\\n 371 | \\n 372 |         if (targetUserId) {\\n 373 |           // 检查特定用户的关注状态\\n 374 |           const status = await checkFollowStatus(userId, targetUserId as string);\\n 375 |           return res.status(200).json(status);\\n 376 |         }\\n 377 | \\n 378 |         // 获取用户统计\\n 379 |         if (mode === 'STATS') {\\n 380 |           const stats = await getUserFollowStats(userId);\\n 381 |           return res.status(200).json(stats);\\n 382 |         }\\n 383 | \\n 384 |         const result = await getUserFollowRelations(userId, {\\n 385 |           mode: mode as 'FOLLOWERS' | 'FOLLOWING' | 'MUTUAL' | 'SUGGESTIONS',\\n 386 |           limit: parseInt(limit as string),\\n 387 |           offset: parseInt(offset as string),\\n 388 |           search: search as string,\\n 389 |         });\\n 390 | \\n 391 |         return res.status(200).json(result);\\n 392 | \\n 393 |       case 'POST':\\n 394 |         // 关注/取消关注\\n 395 |         const { action, targetUserId } = req.body;\\n     :                         ^^^^^^|^^^^^\\n     :                               `-- `targetUserId` redefined here\\n 396 | \\n 397 |         if (!targetUserId) {\\n 398 |           return res.status(400).json({ error: '需要targetUserId' });\\n     `----\\n\",\"stack\":\"ModuleBuildError: Module build failed (from ./node_modules/next/dist/build/webpack/loaders/next-swc-loader.js):\\nError: \\n  \\u001b[31mx\\u001b[0m the name `targetUserId` is defined multiple times\\n     ,-[\\u001b[36;1;4m/Users/mac/.openclaw/workspace/gamehub-project/frontend/src/pages/api/follow/index.ts\\u001b[0m:366:1]\\n \\u001b[2m366\\u001b[0m |           limit = '50',\\n \\u001b[2m367\\u001b[0m |           offset = '0',\\n \\u001b[2m368\\u001b[0m |           search = '',\\n \\u001b[2m369\\u001b[0m |           targetUserId,\\n     : \\u001b[31;1m          ^^^^^^|^^^^^\\u001b[0m\\n     :                 \\u001b[31;1m`-- \\u001b[31;1mprevious definition of `targetUserId` here\\u001b[0m\\u001b[0m\\n \\u001b[2m370\\u001b[0m |         } = req.query;\\n \\u001b[2m371\\u001b[0m | \\n \\u001b[2m372\\u001b[0m |         if (targetUserId) {\\n \\u001b[2m373\\u001b[0m |           // 检查特定用户的关注状态\\n \\u001b[2m374\\u001b[0m |           const status = await checkFollowStatus(userId, targetUserId as string);\\n \\u001b[2m375\\u001b[0m |           return res.status(200).json(status);\\n \\u001b[2m376\\u001b[0m |         }\\n \\u001b[2m377\\u001b[0m | \\n \\u001b[2m378\\u001b[0m |         // 获取用户统计\\n \\u001b[2m379\\u001b[0m |         if (mode === 'STATS') {\\n \\u001b[2m380\\u001b[0m |           const stats = await getUserFollowStats(userId);\\n \\u001b[2m381\\u001b[0m |           return res.status(200).json(stats);\\n \\u001b[2m382\\u001b[0m |         }\\n \\u001b[2m383\\u001b[0m | \\n \\u001b[2m384\\u001b[0m |         const result = await getUserFollowRelations(userId, {\\n \\u001b[2m385\\u001b[0m |           mode: mode as 'FOLLOWERS' | 'FOLLOWING' | 'MUTUAL' | 'SUGGESTIONS',\\n \\u001b[2m386\\u001b[0m |           limit: parseInt(limit as string),\\n \\u001b[2m387\\u001b[0m |           offset: parseInt(offset as string),\\n \\u001b[2m388\\u001b[0m |           search: search as string,\\n \\u001b[2m389\\u001b[0m |         });\\n \\u001b[2m390\\u001b[0m | \\n \\u001b[2m391\\u001b[0m |         return res.status(200).json(result);\\n \\u001b[2m392\\u001b[0m | \\n \\u001b[2m393\\u001b[0m |       case 'POST':\\n \\u001b[2m394\\u001b[0m |         // 关注/取消关注\\n \\u001b[2m395\\u001b[0m |         const { action, targetUserId } = req.body;\\n     : \\u001b[33;1m                        ^^^^^^|^^^^^\\u001b[0m\\n     :                               \\u001b[33;1m`-- \\u001b[33;1m`targetUserId` redefined here\\u001b[0m\\u001b[0m\\n \\u001b[2m396\\u001b[0m | \\n \\u001b[2m397\\u001b[0m |         if (!targetUserId) {\\n \\u001b[2m398\\u001b[0m |           return res.status(400).json({ error: '需要targetUserId' });\\n     `----\\n\\n    at processResult (/Users/mac/.openclaw/workspace/gamehub-project/frontend/node_modules/next/dist/compiled/webpack/bundle5.js:28:400590)\\n    at /Users/mac/.openclaw/workspace/gamehub-project/frontend/node_modules/next/dist/compiled/webpack/bundle5.js:28:402302\\n    at /Users/mac/.openclaw/workspace/gamehub-project/frontend/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js:1:8645\\n    at /Users/mac/.openclaw/workspace/gamehub-project/frontend/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js:1:5019\\n    at r.callback (/Users/mac/.openclaw/workspace/gamehub-project/frontend/node_modules/next/dist/compiled/loader-runner/LoaderRunner.js:1:4039)\"},\"gip\":true,\"scriptLoader\":[]}</script></body></html>"
+    },
+    {
+      "name": "首页可访问性",
+      "passed": false,
+      "timestamp": "2026-03-22T14:18:31.447Z",
+      "path": "/",
+      "statusCode": 500
+    },
+    {
+      "name": "登录页面可访问性",
+      "passed": false,
+      "timestamp": "2026-03-22T14:18:31.451Z",
+      "path": "/login",
+      "statusCode": 500
+    },
+    {
+      "name": "注册页面可访问性",
+      "passed": false,
+      "timestamp": "2026-03-22T14:18:31.454Z",
+      "path": "/register",
+      "statusCode": 500
+    },
+    {
+      "name": "新闻列表页可访问性",
+      "passed": false,
+      "timestamp": "2026-03-22T14:18:31.457Z",
+      "path": "/news",
+      "statusCode": 500
+    },
+    {
+      "name": "社区页面可访问性",
+      "passed": false,
+      "timestamp": "2026-03-22T14:18:31.460Z",
+      "path": "/community",
+      "statusCode": 500
+    },
+    {
+      "name": "游戏指南页可访问性",
+      "passed": false,
+      "timestamp": "2026-03-22T14:18:31.463Z",
+      "path": "/guides",
+      "statusCode": 500
+    },
+    {
+      "name": "健康检查API功能",
+      "passed": true,
+      "timestamp": "2026-03-22T14:18:31.467Z",
+      "path": "/api/health",
+      "method": "GET",
+      "statusCode": 500
+    },
+    {
+      "name": "登录API功能",
+      "passed": true,
+      "timestamp": "2026-03-22T14:18:31.470Z",
+      "path": "/api/auth/simple-login-fixed",
+      "method": "POST",
+      "statusCode": 500
+    },
+    {
+      "name": "数据库文件检查",
+      "passed": true,
+      "timestamp": "2026-03-22T14:18:31.470Z",
+      "dbPath": "prisma/dev.db",
+      "exists": true
+    },
+    {
+      "name": "项目配置检查",
+      "passed": "next dev",
+      "timestamp": "2026-03-22T14:18:31.470Z",
+      "hasBuildScript": "next build",
+      "hasDevScript": "next dev",
+      "dependencies": 22,
+      "devDependencies": 10
+    },
+    {
+      "name": "/页面性能",
+      "passed": true,
+      "timestamp": "2026-03-22T14:18:31.473Z",
+      "loadTime": 3,
+      "statusCode": 500,
+      "size": 6093
+    },
+    {
+      "name": "/news页面性能",
+      "passed": true,
+      "timestamp": "2026-03-22T14:18:31.476Z",
+      "loadTime": 3,
+      "statusCode": 500,
+      "size": 6093
+    },
+    {
+      "name": "/community页面性能",
+      "passed": true,
+      "timestamp": "2026-03-22T14:18:31.478Z",
+      "loadTime": 2,
+      "statusCode": 500,
+      "size": 6093
+    },
+    {
+      "name": "/login页面性能",
+      "passed": true,
+      "timestamp": "2026-03-22T14:18:31.481Z",
+      "loadTime": 3,
+      "statusCode": 500,
+      "size": 6093
+    },
+    {
+      "name": "HTTP响应头检查",
+      "passed": true,
+      "timestamp": "2026-03-22T14:18:31.483Z",
+      "contentType": "text/html; charset=utf-8",
+      "hasContentType": true
+    },
+    {
+      "name": "基础SEO检查",
+      "passed": false,
+      "timestamp": "2026-03-22T14:18:31.485Z",
+      "checks": {
+        "hasTitle": false,
+        "hasMetaDescription": false,
+        "hasViewport": true
+      },
+      "passedChecks": 1,
+      "totalChecks": 3
+    },
+    {
+      "name": "移动端基础兼容性",
+      "passed": false,
+      "timestamp": "2026-03-22T14:18:31.487Z",
+      "hasViewport": true,
+      "hasResponsive": false
+    },
+    {
+      "name": "404页面处理",
+      "passed": true,
+      "timestamp": "2026-03-22T14:18:31.489Z",
+      "statusCode": 500,
+      "hasErrorContent": false
+    },
+    {
+      "name": "/favicon.ico静态资源",
+      "passed": true,
+      "timestamp": "2026-03-22T14:18:31.489Z",
+      "path": "/favicon.ico",
+      "statusCode": 404
+    },
+    {
+      "name": "/robots.txt静态资源",
+      "passed": true,
+      "timestamp": "2026-03-22T14:18:31.490Z",
+      "path": "/robots.txt",
+      "statusCode": 200
+    },
+    {
+      "name": "/sitemap.xml静态资源",
+      "passed": true,
+      "timestamp": "2026-03-22T14:18:31.490Z",
+      "path": "/sitemap.xml",
+      "statusCode": 200
+    },
+    {
+      "name": "环境配置文件检查",
+      "passed": true,
+      "timestamp": "2026-03-22T14:18:31.490Z",
+      "envExists": true,
+      "envExampleExists": true
+    }
+  ],
+  "summary": "一般 - 需要修复"
+}

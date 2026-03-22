@@ -392,19 +392,19 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
       case 'POST':
         // 关注/取消关注
-        const { action, targetUserId } = req.body;
+        const { action, targetUserId: targetUserIdBody } = req.body;
 
-        if (!targetUserId) {
+        if (!targetUserIdBody) {
           return res.status(400).json({ error: '需要targetUserId' });
         }
 
         if (action === 'follow') {
-          const follow = await followUser(userId, targetUserId);
+          const follow = await followUser(userId, targetUserIdBody);
           return res.status(200).json({ follow });
         }
 
         if (action === 'unfollow') {
-          const unfollow = await unfollowUser(userId, targetUserId);
+          const unfollow = await unfollowUser(userId, targetUserIdBody);
           return res.status(200).json({ unfollow });
         }
 
