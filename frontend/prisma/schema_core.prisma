@@ -1,0 +1,98 @@
+// GameHub核心Schema - 仅包含动态页面需要的表
+// 完全适配SQLite，无复杂关系
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+// 用户表
+model User {
+  id              String    @id @default(cuid())
+  email           String    @unique
+  username        String    @unique
+  displayName     String?
+  avatar          String?
+  bio             String?
+  passwordHash    String?
+  emailVerified   Boolean   @default(false)
+  role            String    @default("USER")
+  status          String    @default("ACTIVE")
+  level           Int       @default(1)
+  experience      Int       @default(0)
+  points          Int       @default(0)
+  lastLoginAt     DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  @@index([email])
+  @@index([username])
+}
+
+// 文章表
+model Article {
+  id           String   @id @default(cuid())
+  title        String
+  slug         String   @unique
+  excerpt      String?
+  content      String
+  coverImage   String?
+  type         String   @default("NEWS")
+  authorId     String
+  status       String   @default("DRAFT")
+  featured     Boolean  @default(false)
+  pinned       Boolean  @default(false)
+  rating       Float?   @default(0)
+  ratingCount  Int      @default(0)
+  views        Int      @default(0)
+  likes        Int      @default(0)
+  shares       Int      @default(0)
+  publishedAt  DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  @@index([authorId])
+  @@index([type])
+  @@index([status])
+  @@index([publishedAt])
+}
+
+// 论坛帖子表
+model ForumPost {
+  id           String   @id @default(cuid())
+  title        String
+  content      String
+  authorId     String
+  views        Int      @default(0)
+  likes        Int      @default(0)
+  replies      Int      @default(0)
+  pinned       Boolean  @default(false)
+  locked       Boolean  @default(false)
+  lastReplyAt  DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  @@index([authorId])
+}
+
+// 评论表
+model Comment {
+  id           String   @id @default(cuid())
+  content      String
+  authorId     String
+  articleId    String?
+  forumPostId  String?
+  parentId     String?
+  likes        Int      @default(0)
+  status       String   @default("PENDING")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  @@index([authorId])
+  @@index([articleId])
+  @@index([forumPostId])
+}

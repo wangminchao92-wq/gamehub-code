@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>检查400错误</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test { margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
+        .success { background: #d4edda; }
+        .error { background: #f8d7da; }
+        .loading { background: #fff3cd; }
+    </style>
+</head>
+<body>
+    <h1>检查GameHub界面400错误</h1>
+    
+    <div class="test" id="test1">
+        <h3>测试1: 用户管理页面API调用</h3>
+        <button onclick="testUserApi()">测试用户API</button>
+        <div id="result1"></div>
+    </div>
+    
+    <div class="test" id="test2">
+        <h3>测试2: 登录API调用</h3>
+        <button onclick="testLoginApi()">测试登录API</button>
+        <div id="result2"></div>
+    </div>
+    
+    <div class="test" id="test3">
+        <h3>测试3: 检查所有页面链接</h3>
+        <button onclick="testAllPages()">测试所有页面</button>
+        <div id="result3"></div>
+    </div>
+    
+    <script>
+        async function testUserApi() {
+            const result = document.getElementById('result1');
+            result.innerHTML = '<div class="loading">测试中...</div>';
+            
+            try {
+                const response = await fetch('/api/admin/users/simple', {
+                    headers: {
+                        'x-user-id': 'd191fcda-81e1-4a07-bbf2-bd0d469844e2'
+                    }
+                });
+                
+                const data = await response.json();
+                result.innerHTML = `
+                    <div class="${response.ok ? 'success' : 'error'}">
+                        状态: ${response.status} ${response.statusText}<br>
+                        成功: ${data.success}<br>
+                        用户数: ${data.data?.users?.length || 0}
+                    </div>
+                `;
+            } catch (error) {
+                result.innerHTML = `<div class="error">错误: ${error.message}</div>`;
+            }
+        }
+        
+        async function testLoginApi() {
+            const result = document.getElementById('result2');
+            result.innerHTML = '<div class="loading">测试中...</div>';
+            
+            try {
+                const response = await fetch('/api/auth/simple-login-fixed', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        identifier: 'wangminchao',
+                        password: '4219011oave@'
+                    })
+                });
+                
+                const data = await response.json();
+                result.innerHTML = `
+                    <div class="${response.ok ? 'success' : 'error'}">
+                        状态: ${response.status} ${response.statusText}<br>
+                        成功: ${data.success}<br>
+                        消息: ${data.message || '无消息'}
+                    </div>
+                `;
+            } catch (error) {
+                result.innerHTML = `<div class="error">错误: ${error.message}</div>`;
+            }
+        }
+        
+        async function testAllPages() {
+            const result = document.getElementById('result3');
+            result.innerHTML = '<div class="loading">测试中...</div>';
+            
+            const pages = [
+                '/',
+                '/news',
+                '/community',
+                '/login',
+                '/register',
+                '/admin/users/simple',
+                '/news/ultra-simple/cyberpunk-2077-2-0-review',
+                '/user/ultra-simple/admin',
+                '/community/post/ultra-simple/cmn19p2xr0005jd5sb9h1jo0p'
+            ];
+            
+            let results = [];
+            
+            for (const page of pages) {
+                try {
+                    const response = await fetch(page);
+                    results.push({
+                        page,
+                        status: response.status,
+                        ok: response.ok
+                    });
+                } catch (error) {
+                    results.push({
+                        page,
+                        status: '错误',
+                        ok: false,
+                        error: error.message
+                    });
+                }
+            }
+            
+            let html = '<table border="1" style="width:100%">';
+            html += '<tr><th>页面</th><th>状态</th><th>结果</th></tr>';
+            
+            results.forEach(r => {
+                html += `<tr>
+                    <td>${r.page}</td>
+                    <td>${r.status}</td>
+                    <td class="${r.ok ? 'success' : 'error'}">${r.ok ? '✅' : '❌'} ${r.error || ''}</td>
+                </tr>`;
+            });
+            
+            html += '</table>';
+            result.innerHTML = html;
+        }
+        
+        // 页面加载时自动运行一些测试
+        window.onload = function() {
+            console.log('检查浏览器控制台错误...');
+            // 监听未捕获的错误
+            window.addEventListener('error', function(e) {
+                console.error('JavaScript错误:', e.error);
+            });
+            // 监听未处理的Promise拒绝
+            window.addEventListener('unhandledrejection', function(e) {
+                console.error('未处理的Promise拒绝:', e.reason);
+            });
+        };
+    </script>
+</body>
+</html>

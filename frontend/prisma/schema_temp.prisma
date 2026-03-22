@@ -1,0 +1,664 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// 用户表
+model User {
+  id                String    @id @default(cuid())
+  email             String    @unique
+  username          String    @unique
+  displayName       String?
+  avatar            String?
+  bio               String?
+  
+  // 认证信息
+  passwordHash      String?   // 密码哈希，可为空（社交登录用户）
+  emailVerified     Boolean   @default(false)
+  verificationToken String?
+  resetToken        String?
+  resetTokenExpiry  DateTime?
+  
+  // 社交登录
+  githubId          String?   @unique
+  googleId          String?   @unique
+  socialAvatar      String?
+  
+  // 用户状态
+  role              UserRole  @default(USER)
+  status            UserStatus @default(ACTIVE)
+  level             Int       @default(1)
+  experience        Int       @default(0)
+  points            Int       @default(0)
+  
+  // 时间戳
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  lastLoginAt       DateTime?
+  
+  // 关系
+  sessions          Session[]
+  socialLogins      SocialLogin[]
+  articles          Article[]
+  comments          Comment[]
+  forumPosts        ForumPost[]
+  forumReplies      ForumReply[]
+  sentMessages      PrivateMessage[] @relation("SentMessages")
+  receivedMessages  PrivateMessage[] @relation("ReceivedMessages")
+  orders            Order[]
+  notifications     Notification[]
+  userSettings      UserSettings?
+  files             File[]
+  
+  // 索引
+  @@index([email])
+  @@index([username])
+  @@index([createdAt])
+  @@index([level])
+}
+
+// 用户角色枚举
+enum UserRole {
+  USER
+  EDITOR
+  MODERATOR
+  ADMIN
+  SUPER_ADMIN
+}
+
+// 用户状态枚举
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+  BANNED
+  DELETED
+}
+
+// 会话表
+model Session {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  token        String   @unique
+  userAgent    String?
+  ipAddress    String?
+  expiresAt    DateTime
+  createdAt    DateTime @default(now())
+  
+  @@index([userId])
+  @@index([token])
+  @@index([expiresAt])
+}
+
+// 社交登录表
+model SocialLogin {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  provider     SocialProvider
+  providerId   String
+  accessToken  String?
+  refreshToken String?
+  expiresAt    DateTime?
+  profile      Json?    // 原始社交资料
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  @@unique([provider, providerId])
+  @@index([userId])
+  @@index([provider, providerId])
+}
+
+// 社交登录提供商枚举
+enum SocialProvider {
+  GITHUB
+  GOOGLE
+  TWITTER
+  FACEBOOK
+  DISCORD
+}
+
+// 用户设置表
+model UserSettings {
+  id                    String   @id @default(cuid())
+  userId                String   @unique
+  user                  User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // 通知设置
+  emailNotifications    Boolean  @default(true)
+  pushNotifications     Boolean  @default(true)
+  newsletter            Boolean  @default(false)
+  
+  // 隐私设置
+  profilePublic         Boolean  @default(true)
+  showEmail             Boolean  @default(false)
+  showOnlineStatus      Boolean  @default(true)
+  
+  // 主题设置
+  theme                 Theme    @default(LIGHT)
+  language              String   @default("zh-CN")
+  timezone              String   @default("Asia/Shanghai")
+  
+  // 内容设置
+  contentFilter         ContentFilter @default(MODERATE)
+  autoplayVideos        Boolean  @default(false)
+  showNSFW              Boolean  @default(false)
+  
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+  
+  @@index([userId])
+}
+
+// 主题枚举
+enum Theme {
+  LIGHT
+  DARK
+  SYSTEM
+}
+
+// 内容过滤级别枚举
+enum ContentFilter {
+  STRICT
+  MODERATE
+  RELAXED
+  NONE
+}
+
+// 通知表
+model Notification {
+  id           String   @id @default(cuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // 通知内容
+  type         NotificationType
+  title        String
+  message      String
+  data         Json?    // 额外数据
+  
+  // 状态
+  read         Boolean  @default(false)
+  archived     Boolean  @default(false)
+  
+  // 链接
+  link         String?
+  linkText     String?
+  
+  createdAt    DateTime @default(now())
+  readAt       DateTime?
+  
+  @@index([userId])
+  @@index([userId, read])
+  @@index([createdAt])
+}
+
+// 通知类型枚举
+enum NotificationType {
+  SYSTEM
+  COMMENT
+  REPLY
+  LIKE
+  FOLLOW
+  MESSAGE
+  ORDER
+  PAYMENT
+  WARNING
+  ANNOUNCEMENT
+}
+
+// 文章表（新闻/评测/攻略）
+model Article {
+  id           String   @id @default(cuid())
+  title        String
+  slug         String   @unique
+  excerpt      String?
+  content      String
+  coverImage   String?
+  
+  // 分类
+  type         ArticleType
+  categoryId   String?
+  category     Category? @relation(fields: [categoryId], references: [id])
+  tags         Tag[]
+  
+  // 作者
+  authorId     String
+  author       User     @relation(fields: [authorId], references: [id])
+  
+  // 状态
+  status       ArticleStatus @default(DRAFT)
+  featured     Boolean  @default(false)
+  pinned       Boolean  @default(false)
+  
+  // 评分（仅评测类型）
+  rating       Float?   @default(0)
+  ratingCount  Int      @default(0)
+  
+  // 统计
+  views        Int      @default(0)
+  likes        Int      @default(0)
+  shares       Int      @default(0)
+  comments     Comment[]
+  files        File[]
+  
+  // 时间
+  publishedAt  DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  @@index([authorId])
+  @@index([type])
+  @@index([status])
+  @@index([publishedAt])
+  @@index([rating])
+  @@index([views])
+}
+
+// 文章类型枚举
+enum ArticleType {
+  NEWS      // 新闻
+  REVIEW    // 评测
+  GUIDE     // 攻略
+  VIDEO     // 视频
+  BLOG      // 博客
+}
+
+// 文章状态枚举
+enum ArticleStatus {
+  DRAFT
+  PENDING
+  PUBLISHED
+  ARCHIVED
+  DELETED
+}
+
+// 分类表
+model Category {
+  id           String   @id @default(cuid())
+  name         String
+  slug         String   @unique
+  description  String?
+  icon         String?
+  color        String?
+  order        Int      @default(0)
+  parentId     String?
+  parent       Category? @relation("CategoryToCategory", fields: [parentId], references: [id])
+  children     Category[] @relation("CategoryToCategory")
+  articles     Article[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  @@index([slug])
+  @@index([parentId])
+}
+
+// 标签表
+model Tag {
+  id           String   @id @default(cuid())
+  name         String
+  slug         String   @unique
+  description  String?
+  color        String?
+  articles     Article[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  @@index([slug])
+}
+
+// 评论表
+model Comment {
+  id           String   @id @default(cuid())
+  content      String
+  
+  // 关联
+  articleId    String?
+  article      Article? @relation(fields: [articleId], references: [id])
+  userId       String
+  user         User     @relation(fields: [userId], references: [id])
+  parentId     String?
+  parent       Comment? @relation("CommentToComment", fields: [parentId], references: [id])
+  replies      Comment[] @relation("CommentToComment")
+  
+  // 状态
+  status       CommentStatus @default(PENDING)
+  
+  // 统计
+  likes        Int      @default(0)
+  
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  @@index([articleId])
+  @@index([userId])
+  @@index([parentId])
+  @@index([createdAt])
+}
+
+// 评论状态枚举
+enum CommentStatus {
+  PENDING
+  APPROVED
+  SPAM
+  DELETED
+}
+
+// 论坛帖子表
+model ForumPost {
+  id           String   @id @default(cuid())
+  title        String
+  content      String
+  
+  // 分类
+  forumId      String
+  forum        Forum    @relation(fields: [forumId], references: [id])
+  
+  // 作者
+  authorId     String
+  author       User     @relation(fields: [authorId], references: [id])
+  
+  // 状态
+  status       ForumPostStatus @default(PUBLISHED)
+  pinned       Boolean  @default(false)
+  locked       Boolean  @default(false)
+  
+  // 统计
+  views        Int      @default(0)
+  likes        Int      @default(0)
+  replies      ForumReply[]
+  
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  lastReplyAt  DateTime?
+  
+  @@index([forumId])
+  @@index([authorId])
+  @@index([status])
+  @@index([createdAt])
+  @@index([lastReplyAt])
+}
+
+// 论坛表
+model Forum {
+  id           String   @id @default(cuid())
+  name         String
+  slug         String   @unique
+  description  String?
+  icon         String?
+  order        Int      @default(0)
+  parentId     String?
+  parent       Forum?   @relation("ForumToForum", fields: [parentId], references: [id])
+  children     Forum[]  @relation("ForumToForum")
+  posts        ForumPost[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  @@index([slug])
+  @@index([parentId])
+}
+
+// 论坛帖子状态枚举
+enum ForumPostStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+  DELETED
+}
+
+// 论坛回复表
+model ForumReply {
+  id           String   @id @default(cuid())
+  content      String
+  
+  // 关联
+  postId       String
+  post         ForumPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  authorId     String
+  author       User     @relation(fields: [authorId], references: [id])
+  parentId     String?
+  parent       ForumReply? @relation("ForumReplyToForumReply", fields: [parentId], references: [id])
+  replies      ForumReply[] @relation("ForumReplyToForumReply")
+  
+  // 状态
+  status       ForumReplyStatus @default(PUBLISHED)
+  
+  // 统计
+  likes        Int      @default(0)
+  
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  @@index([postId])
+  @@index([authorId])
+  @@index([parentId])
+  @@index([createdAt])
+}
+
+// 论坛回复状态枚举
+enum ForumReplyStatus {
+  PUBLISHED
+  DELETED
+}
+
+// 私信表
+model PrivateMessage {
+  id           String   @id @default(cuid())
+  content      String
+  
+  // 发送者和接收者
+  senderId     String
+  sender       User     @relation("SentMessages", fields: [senderId], references: [id])
+  receiverId   String
+  receiver     User     @relation("ReceivedMessages", fields: [receiverId], references: [id])
+  
+  // 状态
+  read         Boolean  @default(false)
+  
+  createdAt    DateTime @default(now())
+  readAt       DateTime?
+  
+  @@index([senderId])
+  @@index([receiverId])
+  @@index([senderId, receiverId])
+  @@index([createdAt])
+}
+
+// 商品表
+model Product {
+  id           String   @id @default(cuid())
+  name         String
+  slug         String   @unique
+  description  String?
+  
+  // 价格
+  price        Decimal
+  discountPrice Decimal?
+  currency     String   @default("CNY")
+  
+  // 库存
+  sku          String?  @unique
+  stock        Int      @default(0)
+  unlimitedStock Boolean @default(false)
+  
+  // 分类
+  categoryId   String?
+  category     ProductCategory? @relation(fields: [categoryId], references: [id])
+  tags         ProductTag[]
+  
+  // 图片
+  images       Json     // 图片URL数组
+  
+  // 状态
+  status       ProductStatus @default(DRAFT)
+  featured     Boolean  @default(false)
+  
+  // 统计
+  sales        Int      @default(0)
+  views        Int      @default(0)
+  
+  // 时间
+  publishedAt  DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  @@index([slug])
+  @@index([categoryId])
+  @@index([status])
+  @@index([price])
+  @@index([sales])
+}
+
+// 商品分类表
+model ProductCategory {
+  id           String   @id @default(cuid())
+  name         String
+  slug         String   @unique
+  description  String?
+  icon         String?
+  order        Int      @default(0)
+  parentId     String?
+  parent       ProductCategory? @relation("ProductCategoryToProductCategory", fields: [parentId], references: [id])
+  children     ProductCategory[] @relation("ProductCategoryToProductCategory")
+  products     Product[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  @@index([slug])
+  @@index([parentId])
+}
+
+// 商品标签表
+model ProductTag {
+  id           String   @id @default(cuid())
+  name         String
+  slug         String   @unique
+  description  String?
+  color        String?
+  products     Product[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  @@index([slug])
+}
+
+// 商品状态枚举
+enum ProductStatus {
+  DRAFT
+  PUBLISHED
+  OUT_OF_STOCK
+  DISCONTINUED
+}
+
+// 订单表
+model Order {
+  id           String   @id @default(cuid())
+  orderNumber  String   @unique
+  
+  // 用户
+  userId       String
+  user         User     @relation(fields: [userId], references: [id])
+  
+  // 商品
+  items        Json     // 订单商品项
+  
+  // 价格
+  subtotal     Decimal
+  tax          Decimal  @default(0)
+  shipping     Decimal  @default(0)
+  discount     Decimal  @default(0)
+  total        Decimal
+  currency     String   @default("CNY")
+  
+  // 支付
+  paymentMethod PaymentMethod
+  paymentStatus PaymentStatus @default(PENDING)
+  paymentId     String?
+  
+  // 配送
+  shippingAddress Json?
+  shippingMethod  String?
+  trackingNumber  String?
+  
+  // 状态
+  status       OrderStatus @default(PENDING)
+  
+  // 时间
+  paidAt       DateTime?
+  shippedAt    DateTime?
+  deliveredAt  DateTime?
+  cancelledAt  DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  @@index([userId])
+  @@index([orderNumber])
+  @@index([status])
+  @@index([createdAt])
+}
+
+// 支付方式枚举
+enum PaymentMethod {
+  ALIPAY
+  WECHAT_PAY
+  PAYPAL
+  CREDIT_CARD
+  BANK_TRANSFER
+}
+
+// 支付状态枚举
+enum PaymentStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  REFUNDED
+  CANCELLED
+}
+
+// 订单状态枚举
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+}
+
+// 文件表
+model File {
+  id           String   @id @default(cuid())
+  filename     String
+  originalName String
+  mimeType     String
+  size         Int
+  path         String
+  url          String
+  
+  // 上传者
+  uploaderId   String?
+  uploader     User?    @relation(fields: [uploaderId], references: [id])
+  
+  // 关联
+  articleId    String?
+  article      Article? @relation(fields: [articleId], references: [id])
+  
+  // 元数据
+  metadata     Json?
+  
+  createdAt    DateTime @default(now())
+  
+  @@index([uploaderId])
+  @@index([articleId])
+  @@index([createdAt])
+}
+
+//

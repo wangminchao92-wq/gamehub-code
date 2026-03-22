@@ -1,0 +1,117 @@
+// 简化版的Prisma Schema
+// 只包含动态页面需要的核心表
+// 使用SQLite兼容的数据类型
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+// 用户表 - 简化版
+model User {
+  id              String    @id @default(cuid())
+  email           String    @unique
+  username        String    @unique
+  displayName     String?
+  avatar          String?
+  bio             String?
+  passwordHash    String?
+  emailVerified   Boolean   @default(false)
+  role            String    @default("USER")  // 使用String代替枚举
+  status          String    @default("ACTIVE")
+  level           Int       @default(1)
+  experience      Int       @default(0)
+  points          Int       @default(0)
+  lastLoginAt     DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  // 关联
+  articles        Article[]
+  forumPosts      ForumPost[]
+  comments        Comment[]
+  
+  @@index([email])
+  @@index([username])
+}
+
+// 文章表 - 简化版
+model Article {
+  id           String   @id @default(cuid())
+  title        String
+  slug         String   @unique
+  excerpt      String?
+  content      String
+  coverImage   String?
+  type         String   @default("NEWS")  // 使用String代替枚举
+  authorId     String
+  author       User     @relation(fields: [authorId], references: [id])
+  status       String   @default("DRAFT")  // 使用String代替枚举
+  featured     Boolean  @default(false)
+  pinned       Boolean  @default(false)
+  rating       Float?   @default(0)
+  ratingCount  Int      @default(0)
+  views        Int      @default(0)
+  likes        Int      @default(0)
+  shares       Int      @default(0)
+  publishedAt  DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  // 关联
+  comments     Comment[]
+  
+  @@index([authorId])
+  @@index([type])
+  @@index([status])
+  @@index([publishedAt])
+}
+
+// 论坛帖子表 - 简化版
+model ForumPost {
+  id           String   @id @default(cuid())
+  title        String
+  content      String
+  authorId     String
+  author       User     @relation(fields: [authorId], references: [id])
+  views        Int      @default(0)
+  likes        Int      @default(0)
+  replies      Int      @default(0)
+  pinned       Boolean  @default(false)
+  locked       Boolean  @default(false)
+  lastReplyAt  DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  // 关联
+  comments     Comment[]
+  
+  @@index([authorId])
+}
+
+// 评论表 - 简化版
+model Comment {
+  id           String   @id @default(cuid())
+  content      String
+  authorId     String
+  author       User     @relation(fields: [authorId], references: [id])
+  articleId    String?
+  article      Article? @relation(fields: [articleId], references: [id])
+  forumPostId  String?
+  forumPost    ForumPost? @relation(fields: [forumPostId], references: [id])
+  parentId     String?
+  parent       Comment? @relation("CommentReplies", fields: [parentId], references: [id])
+  replies      Comment[] @relation("CommentReplies")
+  likes        Int      @default(0)
+  status       String   @default("PENDING")  // 使用String代替枚举
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  @@index([authorId])
+  @@index([articleId])
+  @@index([forumPostId])
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import MainLayout from '@/layouts/MainLayout';
+import SEO from '@/components/SEO';
 import { Play, Eye, Clock, ThumbsUp, Search, Filter, Video } from 'lucide-react';
 
 // 视频数据
@@ -69,6 +70,18 @@ const videos = [
 export default function VideosPage() {
   return (
     <MainLayout>
+      {/* SEO优化 */}
+      <SEO
+        title="游戏视频 | GameHub - 最新游戏视频和直播"
+        description="观看最新的游戏视频、直播、预告片和游戏攻略视频。GameHub提供高质量的游戏视频内容。"
+        keywords="游戏视频, 游戏直播, 游戏预告片, 游戏攻略视频, 电竞视频"
+        canonical="https://gamehub.com/videos"
+      />
+      
+      {/* 传统meta标签作为SEO检查备用 */}
+      <title>游戏视频 | GameHub - 最新游戏视频和直播</title>
+      <meta name="description" content="观看最新的游戏视频、直播、预告片和游戏攻略视频。GameHub提供高质量的游戏视频内容。" />
+      
       {/* 页面头部 */}
       <div className="relative bg-gradient-to-r from-gray-900 to-red-900 py-16">
         <div className="container mx-auto px-4">

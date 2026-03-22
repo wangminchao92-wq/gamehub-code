@@ -25,41 +25,28 @@ const featuredNews = [
   },
   {
     id: 3,
-    title: '本周末必玩的10款热门游戏推荐',
-    category: '攻略',
+    title: '年度最佳游戏评选结果公布',
+    category: '资讯',
     date: '1天前',
     image: 'https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?auto=format&fit=crop&w=800&q=80',
     score: null,
-    platform: '多平台',
+    platform: '综合',
   },
 ];
 
 const stats = [
-  { value: '50K+', label: '活跃会员', icon: Users },
-  { value: '10K+', label: '游戏评测', icon: Star },
-  { value: '5K+', label: '攻略指南', icon: Trophy },
-  { value: '24/7', label: '在线支持', icon: Zap },
+  { icon: Users, value: '10万+', label: '活跃玩家' },
+  { icon: Gamepad2, value: '5千+', label: '游戏评测' },
+  { icon: Trophy, value: '100+', label: '赛事活动' },
+  { icon: Zap, value: '24/7', label: '实时更新' },
 ];
 
 export default function HeroSection() {
   return (
-    <div className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-primary-900 min-h-[90vh]">
-      {/* 主背景图片 */}
-      <div className="absolute inset-0 z-0">
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-20"
-          style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?auto=format&fit=crop&w=1920&q=80)',
-          }}
-        />
-        {/* 渐变遮罩 */}
-        <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/80 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary-900/20 to-transparent" />
-      </div>
-
-      {/* 动态粒子背景 */}
-      <div className="absolute inset-0 z-0">
-        {[...Array(20)].map((_, i) => (
+    <section className="relative min-h-screen bg-gradient-to-b from-gray-900 to-black overflow-hidden">
+      {/* 背景动画粒子 */}
+      <div className="absolute inset-0">
+        {Array.from({ length: 50 }).map((_, i) => (
           <div
             key={i}
             className="absolute w-1 h-1 bg-primary-400 rounded-full animate-pulse"
@@ -74,9 +61,9 @@ export default function HeroSection() {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="py-16 lg:py-32">
+        <header className="py-16 lg:py-32">
           {/* 主标题区域 */}
-          <motion.div
+          <motion.header
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -107,7 +94,7 @@ export default function HeroSection() {
             </p>
 
             {/* 行动按钮 */}
-            <div className="flex flex-wrap justify-center gap-4 mb-16">
+            <nav className="flex flex-wrap justify-center gap-4 mb-16" aria-label="主要行动">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -125,131 +112,125 @@ export default function HeroSection() {
                 <Users className="h-5 w-5 mr-2" />
                 加入社区
               </motion.button>
-            </div>
+            </nav>
+          </motion.header>
 
-            {/* 统计数据 */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto"
-            >
-              {stats.map((stat, index) => {
-                const Icon = stat.icon;
-                return (
-                  <motion.div
-                    key={index}
-                    whileHover={{ y: -5 }}
-                    className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50"
-                  >
-                    <div className="flex items-center justify-center mb-2">
-                      <Icon className="h-8 w-8 text-primary-400" />
-                    </div>
-                    <div className="text-3xl font-bold text-white text-center mb-1">{stat.value}</div>
-                    <div className="text-sm text-gray-400 text-center">{stat.label}</div>
-                  </motion.div>
-                );
-              })}
-            </motion.div>
-          </motion.div>
-
-          {/* 特色新闻区域 */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="max-w-7xl mx-auto"
+          {/* 统计数据 */}
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto"
+            aria-label="网站统计数据"
           >
-            <div className="flex items-center justify-between mb-8">
-              <div>
-                <h2 className="text-3xl font-bold text-white">精选新闻</h2>
-                <p className="text-gray-400 mt-2">最新游戏动态和深度报道</p>
-              </div>
-              <div className="flex items-center text-gray-300">
-                <Calendar className="h-5 w-5 mr-2" />
-                <span className="text-sm">2026年3月19日</span>
-              </div>
-            </div>
-
-            {/* 新闻卡片网格 */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {featuredNews.map((news, index) => (
+            {stats.map((stat, index) => {
+              const Icon = stat.icon;
+              return (
                 <motion.div
-                  key={news.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 * index, duration: 0.5 }}
-                  whileHover={{ y: -8 }}
-                  className="group cursor-pointer"
+                  key={index}
+                  whileHover={{ y: -5 }}
+                  className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50"
                 >
-                  <div className="relative overflow-hidden rounded-2xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 h-full">
-                    {/* 图片区域 */}
-                    <div className="relative h-48 overflow-hidden">
-                      <div 
-                        className="h-full w-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                        style={{ backgroundImage: `url(${news.image})` }}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent" />
-                      
-                      {/* 平台标签 */}
-                      <div className="absolute top-4 left-4">
-                        <div className="flex items-center px-3 py-1 bg-gray-900/80 backdrop-blur-sm rounded-full">
-                          <Gamepad2 className="h-3 w-3 mr-1 text-gray-300" />
-                          <span className="text-xs text-gray-300">{news.platform}</span>
+                  <div className="flex items-center justify-center mb-2">
+                    <Icon className="h-8 w-8 text-primary-400" />
+                  </div>
+                  <div className="text-3xl font-bold text-white text-center mb-1">{stat.value}</div>
+                  <div className="text-sm text-gray-400 text-center">{stat.label}</div>
+                </motion.div>
+              );
+            })}
+          </motion.section>
+        </header>
+
+        {/* 特色新闻区域 */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+          className="max-w-7xl mx-auto"
+        >
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-3xl font-bold text-white">精选新闻</h2>
+              <p className="text-gray-400 mt-2">最新游戏动态和深度报道</p>
+            </div>
+            <div className="flex items-center text-gray-300">
+              <Calendar className="h-5 w-5 mr-2" />
+              <span className="text-sm">2026年3月19日</span>
+            </div>
+          </div>
+
+          {/* 新闻卡片网格 */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {featuredNews.map((news, index) => (
+              <motion.div
+                key={news.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7 + index * 0.1, duration: 0.5 }}
+                whileHover={{ y: -5 }}
+                className="group"
+              >
+                <div className="bg-gray-800/30 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/30 hover:border-primary-500/30 transition-all duration-300">
+                  {/* 图片区域 */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={news.image}
+                      alt={news.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1 bg-primary-500/90 text-white text-sm font-bold rounded-full">
+                        {news.category}
+                      </span>
+                    </div>
+                    {news.score && (
+                      <div className="absolute top-4 right-4">
+                        <div className="px-3 py-1 bg-gray-900/90 text-white text-sm font-bold rounded-full flex items-center">
+                          <Star className="h-3 w-3 mr-1 fill-yellow-400 text-yellow-400" />
+                          {news.score}
                         </div>
                       </div>
-                      
-                      {/* 评分 */}
-                      {news.score && (
-                        <div className="absolute top-4 right-4 flex items-center bg-black/60 backdrop-blur-sm px-3 py-1 rounded-full">
-                          <Star className="h-3 w-3 text-yellow-400 mr-1" />
-                          <span className="text-sm font-bold text-white">{news.score}</span>
-                        </div>
-                      )}
+                    )}
+                  </div>
+
+                  {/* 内容区域 */}
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary-300 transition-colors line-clamp-2">
+                      {news.title}
+                    </h3>
+                    
+                    <div className="flex items-center justify-between text-sm text-gray-400 mb-4">
+                      <span>{news.date}</span>
+                      <span>{news.platform}</span>
                     </div>
 
-                    {/* 内容区域 */}
-                    <div className="p-6">
-                      {/* 分类标签 */}
-                      <div className="flex items-center justify-between mb-3">
-                        <span className="px-3 py-1 text-xs font-bold bg-primary-500/20 text-primary-300 rounded-full">
-                          {news.category}
-                        </span>
-                        <span className="text-xs text-gray-400">{news.date}</span>
-                      </div>
-
-                      {/* 标题 */}
-                      <h3 className="text-lg font-bold text-white mb-3 line-clamp-2 group-hover:text-primary-300 transition-colors">
-                        {news.title}
-                      </h3>
-
-                      {/* 阅读更多 */}
-                      <div className="flex items-center text-primary-400 group-hover:text-primary-300 transition-colors">
-                        <span className="text-sm font-medium mr-2">阅读全文</span>
-                        <TrendingUp className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                      </div>
+                    {/* 阅读更多 */}
+                    <div className="flex items-center text-primary-400 group-hover:text-primary-300 transition-colors">
+                      <span className="text-sm font-medium mr-2">阅读全文</span>
+                      <TrendingUp className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </div>
                   </div>
-                </motion.div>
-              ))}
-            </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
 
-            {/* 查看更多链接 */}
-            <div className="text-center mt-12">
-              <motion.a
-                whileHover={{ scale: 1.05 }}
-                href="/news"
-                className="inline-flex items-center px-6 py-3 bg-gray-800/50 backdrop-blur-sm text-white font-medium rounded-lg border border-gray-700 hover:border-primary-500 transition-all duration-300"
-              >
-                查看更多新闻
-                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-              </motion.a>
-            </div>
-          </motion.div>
-        </div>
+          {/* 查看更多链接 */}
+          <div className="text-center mt-12">
+            <motion.a
+              whileHover={{ scale: 1.05 }}
+              href="/news"
+              className="inline-flex items-center px-6 py-3 bg-gray-800/50 backdrop-blur-sm text-white font-medium rounded-lg border border-gray-700 hover:border-primary-500 transition-all duration-300"
+            >
+              查看更多新闻
+              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </motion.a>
+          </div>
+        </motion.div>
       </div>
-    </div>
+    </section>
   );
 }

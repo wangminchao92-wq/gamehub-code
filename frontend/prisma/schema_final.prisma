@@ -1,0 +1,197 @@
+// GameHub简化版Schema - 适配SQLite
+// 移除SQLite不支持的Json类型和枚举
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+// ========== 用户系统 ==========
+
+model User {
+  id              String    @id @default(cuid())
+  email           String    @unique
+  username        String    @unique
+  displayName     String?
+  avatar          String?
+  bio             String?
+  passwordHash    String?
+  emailVerified   Boolean   @default(false)
+  role            String    @default("USER")      // 使用String代替枚举
+  status          String    @default("ACTIVE")    // 使用String代替枚举
+  level           Int       @default(1)
+  experience      Int       @default(0)
+  points          Int       @default(0)
+  lastLoginAt     DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  // 关联
+  articles        Article[]    @relation("UserArticles", onDelete: Cascade)
+  forumPosts      ForumPost[]  @relation("UserForumPosts", onDelete: Cascade)
+  comments        Comment[]    @relation("UserComments", onDelete: Cascade)
+  
+  @@index([email])
+  @@index([username])
+}
+
+// ========== 内容管理系统 ==========
+
+model Article {
+  id           String   @id @default(cuid())
+  title        String
+  slug         String   @unique
+  excerpt      String?
+  content      String
+  coverImage   String?
+  type         String   @default("NEWS")      // 使用String代替枚举
+  authorId     String
+  author       User     @relation(fields: [authorId], references: [id])
+  status       String   @default("DRAFT")     // 使用String代替枚举
+  featured     Boolean  @default(false)
+  pinned       Boolean  @default(false)
+  rating       Float?   @default(0)
+  ratingCount  Int      @default(0)
+  views        Int      @default(0)
+  likes        Int      @default(0)
+  shares       Int      @default(0)
+  publishedAt  DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  // 关联
+  comments     Comment[]
+  
+  @@index([authorId])
+  @@index([type])
+  @@index([status])
+  @@index([publishedAt])
+}
+
+// ========== 社区系统 ==========
+
+model ForumPost {
+  id           String   @id @default(cuid())
+  title        String
+  content      String
+  authorId     String
+  author       User     @relation(fields: [authorId], references: [id])
+  views        Int      @default(0)
+  likes        Int      @default(0)
+  replies      Int      @default(0)
+  pinned       Boolean  @default(false)
+  locked       Boolean  @default(false)
+  lastReplyAt  DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  // 关联
+  comments     Comment[]
+  
+  @@index([authorId])
+}
+
+model Comment {
+  id           String   @id @default(cuid())
+  content      String
+  authorId     String
+  author       User     @relation(fields: [authorId], references: [id])
+  articleId    String?
+  article      Article? @relation(fields: [articleId], references: [id])
+  forumPostId  String?
+  forumPost    ForumPost? @relation(fields: [forumPostId], references: [id])
+  parentId     String?
+  parent       Comment? @relation("CommentReplies", fields: [parentId], references: [id])
+  replies      Comment[] @relation("CommentReplies")
+  likes        Int      @default(0)
+  status       String   @default("PENDING")   // 使用String代替枚举
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  @@index([authorId])
+  @@index([articleId])
+  @@index([forumPostId])
+}
+
+// ========== 商店系统（简化版） ==========
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String?
+  price       Float
+  originalPrice Float?
+  images      String   // 使用逗号分隔的字符串代替Json数组
+  stock       Int      @default(0)
+  status      String   @default("DRAFT")     // 使用String代替枚举
+  featured    Boolean  @default(false)
+  views       Int      @default(0)
+  sales       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([slug])
+  @@index([status])
+}
+
+model Order {
+  id              String   @id @default(cuid())
+  orderNumber     String   @unique
+  userId          String
+  user            User     @relation(fields: [userId], references: [id])
+  totalAmount     Float
+  status          String   @default("PENDING")   // 使用String代替枚举
+  shippingAddress String?  // 使用字符串代替Json
+  shippingMethod  String?
+  trackingNumber  String?
+  paidAt          DateTime?
+  shippedAt       DateTime?
+  deliveredAt     DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  // 订单项（简化：使用字符串描述）
+  itemsDescription String
+  
+  @@index([userId])
+  @@index([orderNumber])
+  @@index([status])
+}
+
+// ========== 文件系统（简化版） ==========
+
+model File {
+  id        String   @id @default(cuid())
+  name      String
+  url       String
+  size      Int
+  mimeType  String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@index([userId])
+}
+
+// ========== 通知系统（简化版） ==========
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      String   // 使用String代替枚举
+  title     String
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@index([userId])
+  @@index([read])
+}

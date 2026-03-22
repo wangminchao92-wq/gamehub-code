@@ -1,0 +1,141 @@
+{
+  "timestamp": "2026-03-22T06:01:07.576Z",
+  "testResults": [
+    {
+      "name": "首页",
+      "url": "http://localhost:3000/",
+      "hasViewport": true,
+      "hasTouchOptimization": false,
+      "touchElements": [],
+      "buttonCount": 8,
+      "linkCount": 28,
+      "formElementCount": 0,
+      "responsiveClasses": [
+        "lg:ml-10",
+        "lg:flex",
+        "lg:space-x-1",
+        "md:flex",
+        "lg:hidden",
+        "lg:py-32",
+        "md:text-6xl",
+        "lg:text-7xl",
+        "md:text-2xl",
+        "md:grid-cols-4",
+        "md:grid-cols-3",
+        "lg:grid-cols-3",
+        "lg:col-span-2",
+        "md:col-span-1"
+      ],
+      "mobileNavigation": false,
+      "fontSizeAnalysis": {},
+      "touchScore": 40
+    },
+    {
+      "name": "文章详情页",
+      "url": "http://localhost:3000/news/ultra-simple/cyberpunk-2077-2-0-review",
+      "hasViewport": true,
+      "hasTouchOptimization": true,
+      "touchElements": [
+        {
+          "className": "touch-target",
+          "count": 11
+        },
+        {
+          "className": "btn-touch",
+          "count": 3
+        }
+      ],
+      "buttonCount": 4,
+      "linkCount": 19,
+      "formElementCount": 0,
+      "responsiveClasses": [
+        "md:hidden",
+        "md:flex",
+        "md:grid-cols-4"
+      ],
+      "mobileNavigation": false,
+      "fontSizeAnalysis": {},
+      "touchScore": 64
+    },
+    {
+      "name": "用户个人中心",
+      "url": "http://localhost:3000/user/ultra-simple/admin",
+      "hasViewport": true,
+      "hasTouchOptimization": true,
+      "touchElements": [
+        {
+          "className": "touch-target",
+          "count": 11
+        },
+        {
+          "className": "btn-touch",
+          "count": 3
+        }
+      ],
+      "buttonCount": 7,
+      "linkCount": 19,
+      "formElementCount": 0,
+      "responsiveClasses": [
+        "md:hidden",
+        "md:flex",
+        "md:flex-row",
+        "md:items-center",
+        "md:mb-0",
+        "md:mr-6",
+        "md:mt-0",
+        "md:grid-cols-4"
+      ],
+      "mobileNavigation": false,
+      "fontSizeAnalysis": {},
+      "touchScore": 64
+    },
+    {
+      "name": "帖子详情页",
+      "url": "http://localhost:3000/community/post/ultra-simple/cmn19p2xr0005jd5sb9h1jo0p",
+      "hasViewport": true,
+      "hasTouchOptimization": true,
+      "touchElements": [
+        {
+          "className": "touch-target",
+          "count": 8
+        }
+      ],
+      "buttonCount": 7,
+      "linkCount": 20,
+      "formElementCount": 1,
+      "responsiveClasses": [
+        "md:hidden",
+        "md:flex",
+        "md:grid-cols-4"
+      ],
+      "mobileNavigation": false,
+      "fontSizeAnalysis": {},
+      "touchScore": 62
+    }
+  ],
+  "summary": {
+    "averageScore": 57.5,
+    "pagesTested": 4,
+    "pagesWithViewport": 4,
+    "pagesWithTouchOptimization": 3,
+    "pagesWithMobileNav": 0,
+    "totalTouchElements": 36
+  },
+  "recommendations": {
+    "immediate": [
+      "修复缺少viewport的页面",
+      "为所有交互元素添加触摸优化类",
+      "确保最小触摸目标48x48像素"
+    ],
+    "shortTerm": [
+      "实现移动端导航菜单",
+      "优化触摸反馈效果",
+      "测试不同设备兼容性"
+    ],
+    "longTerm": [
+      "添加手势操作支持",
+      "优化移动端性能",
+      "进行真实用户测试"
+    ]
+  }
+}

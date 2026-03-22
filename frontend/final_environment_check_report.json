@@ -1,0 +1,160 @@
+{
+  "timestamp": "2026-03-22T06:06:16.829Z",
+  "summary": {
+    "finalScore": 93.3,
+    "pageAccessibility": "7/7",
+    "accountAccessibility": "3/3",
+    "overallAssessment": "优秀"
+  },
+  "details": {
+    "pages": [
+      {
+        "name": "首页",
+        "url": "http://localhost:3000/",
+        "status": "success",
+        "statusCode": "200",
+        "loadTime": 159.3,
+        "hasTitle": true,
+        "hasViewport": true,
+        "hasTouchOptimization": false
+      },
+      {
+        "name": "触摸优化首页",
+        "url": "http://localhost:3000/home-touch-test",
+        "status": "success",
+        "statusCode": "200",
+        "loadTime": 59.653,
+        "hasTitle": true,
+        "hasViewport": true,
+        "hasTouchOptimization": true
+      },
+      {
+        "name": "文章详情页",
+        "url": "http://localhost:3000/news/ultra-simple/cyberpunk-2077-2-0-review",
+        "status": "success",
+        "statusCode": "200",
+        "loadTime": 158.425,
+        "hasTitle": true,
+        "hasViewport": true,
+        "hasTouchOptimization": true
+      },
+      {
+        "name": "用户个人中心",
+        "url": "http://localhost:3000/user/ultra-simple/admin",
+        "status": "success",
+        "statusCode": "200",
+        "loadTime": 48.272000000000006,
+        "hasTitle": true,
+        "hasViewport": true,
+        "hasTouchOptimization": true
+      },
+      {
+        "name": "帖子详情页",
+        "url": "http://localhost:3000/community/post/ultra-simple/cmn19p2xr0005jd5sb9h1jo0p",
+        "status": "success",
+        "statusCode": "200",
+        "loadTime": 42.875,
+        "hasTitle": true,
+        "hasViewport": true,
+        "hasTouchOptimization": true
+      },
+      {
+        "name": "登录页面",
+        "url": "http://localhost:3000/login",
+        "status": "success",
+        "statusCode": "200",
+        "loadTime": 189.435,
+        "hasTitle": true,
+        "hasViewport": true,
+        "hasTouchOptimization": false
+      },
+      {
+        "name": "注册页面",
+        "url": "http://localhost:3000/register",
+        "status": "success",
+        "statusCode": "200",
+        "loadTime": 77.46300000000001,
+        "hasTitle": true,
+        "hasViewport": true,
+        "hasTouchOptimization": false
+      }
+    ],
+    "accounts": [
+      {
+        "username": "testuser1",
+        "role": "普通用户",
+        "personalCenterAccessible": true,
+        "statusCode": "200"
+      },
+      {
+        "username": "creator1",
+        "role": "内容创作者",
+        "personalCenterAccessible": true,
+        "statusCode": "200"
+      },
+      {
+        "username": "admin",
+        "role": "管理员",
+        "personalCenterAccessible": true,
+        "statusCode": "200"
+      }
+    ],
+    "performance": [
+      {
+        "url": "http://localhost:3000/",
+        "avgLoadTime": 19.254,
+        "successRate": 1,
+        "performanceLevel": "优秀"
+      },
+      {
+        "url": "http://localhost:3000/home-touch-test",
+        "avgLoadTime": 22.118,
+        "successRate": 1,
+        "performanceLevel": "优秀"
+      }
+    ],
+    "touchOptimization": [
+      {
+        "name": "触摸优化首页",
+        "url": "http://localhost:3000/home-touch-test",
+        "touchClasses": [
+          "touch-target",
+          "btn-touch",
+          "link-block-touch",
+          "card-touch",
+          "nav-item-touch",
+          "hamburger-touch"
+        ],
+        "touchClassCount": 6,
+        "hasMobileNav": true,
+        "hasViewport": true,
+        "status": "checked"
+      },
+      {
+        "name": "文章详情页",
+        "url": "http://localhost:3000/news/ultra-simple/cyberpunk-2077-2-0-review",
+        "touchClasses": [
+          "touch-target",
+          "btn-touch"
+        ],
+        "touchClassCount": 2,
+        "hasMobileNav": false,
+        "hasViewport": true,
+        "status": "checked"
+      },
+      {
+        "name": "用户个人中心",
+        "url": "http://localhost:3000/user/ultra-simple/admin",
+        "touchClasses": [
+          "touch-target",
+          "btn-touch"
+        ],
+        "touchClassCount": 2,
+        "hasMobileNav": false,
+        "hasViewport": true,
+        "status": "checked"
+      }
+    ]
+  },
+  "recommendations": []
+}

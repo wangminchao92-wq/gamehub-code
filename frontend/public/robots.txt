@@ -1,100 +1,91 @@
-# GameHub - Robots.txt
-# Generated: 2026-03-19
+# GameHub Robots.txt
+# Generated: 2026-03-22
+# Contact: admin@gamehub.com
 
 User-agent: *
 Allow: /
-
-# 禁止爬虫访问的目录
-Disallow: /api/
 Disallow: /admin/
-Disallow: /private/
-Disallow: /tmp/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /node_modules/
 
-# 禁止爬虫访问的文件类型
-Disallow: /*.json$
-Disallow: /*.xml$
-Disallow: /*.txt$
-
-# 爬虫延迟（秒）
-Crawl-delay: 1
+# 爬虫延迟设置
+Crawl-delay: 2
 
 # Sitemap位置
-Sitemap: https://gamehub.example.com/sitemap.xml
-Sitemap: https://gamehub.example.com/sitemap-index.xml
+Sitemap: https://gamehub.com/api/sitemap-index.xml
+# 也可以直接引用具体的sitemap文件
+Sitemap: https://gamehub.com/api/sitemap.xml
+Sitemap: https://gamehub.com/api/sitemap-news.xml
+Sitemap: https://gamehub.com/api/sitemap-images.xml
 
-# 特殊爬虫规则
+# 特定搜索引擎设置
 User-agent: Googlebot
 Allow: /
-Crawl-delay: 0.5
+Disallow: /admin/
+Disallow: /api/
+Crawl-delay: 1
+
+User-agent: Googlebot-Image
+Allow: /images/
+Disallow: /admin/images/
 
 User-agent: Bingbot
 Allow: /
-Crawl-delay: 1
-
-User-agent: Yandex
-Allow: /
+Disallow: /admin/
+Disallow: /api/
 Crawl-delay: 2
 
 User-agent: Baiduspider
 Allow: /
+Disallow: /admin/
+Disallow: /api/
+Crawl-delay: 3
+
+User-agent: YandexBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
 Crawl-delay: 2
 
-User-agent: Applebot
-Allow: /
-Crawl-delay: 1
-
 # 禁止恶意爬虫
+User-agent: MJ12bot
+Disallow: /
+
 User-agent: AhrefsBot
 Disallow: /
 
 User-agent: SemrushBot
 Disallow: /
 
-User-agent: MJ12bot
-Disallow: /
-
 User-agent: DotBot
 Disallow: /
 
-# 开发环境禁止索引
+User-agent: MegaIndex
+Disallow: /
+
+# 开发环境特殊处理
 User-agent: *
-Disallow: /_next/
-Disallow: /node_modules/
+Disallow: /dev/
+Disallow: /test/
+Disallow: /staging/
 
-# 多语言站点hreflang支持
-# 搜索引擎会自动处理Next.js i18n路由
-
-# 移动端优先索引
-# 网站采用响应式设计，无需单独移动版
-
-# 图片爬虫规则
-User-agent: Googlebot-Image
-Allow: /public/images/
-Disallow: /public/uploads/
-
-# 视频爬虫规则
-User-agent: Googlebot-Video
-Allow: /public/videos/
-Disallow: /public/uploads/
-
-# 新闻爬虫规则
-User-agent: Googlebot-News
-Allow: /news/
-
-# 广告爬虫规则
-User-agent: Mediapartners-Google
-Allow: /
-
-# 特殊文件
+# 用户隐私保护
 User-agent: *
-Allow: /sitemap.xml
-Allow: /sitemap-index.xml
-Allow: /robots.txt
-Allow: /humans.txt
-Allow: /security.txt
-Allow: /ads.txt
+Disallow: /user/*/private/
+Disallow: /user/*/settings/
+Disallow: /user/*/messages/
 
-# 注释：
-# 1. 生产环境需要更新域名
-# 2. 根据实际需求调整规则
-# 3. 定期更新sitemap引用
+# 临时文件
+User-agent: *
+Disallow: /tmp/
+Disallow: /temp/
+Disallow: /cache/
+
+# 注释说明
+# 1. 允许所有搜索引擎爬取公开内容
+# 2. 禁止爬取管理后台和API接口
+# 3. 设置合理的爬取延迟
+# 4. 保护用户隐私内容
+# 5. 阻止恶意爬虫
+# 6. 提供sitemap位置

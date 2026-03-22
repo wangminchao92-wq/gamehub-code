@@ -1,0 +1,34 @@
+/* GameHub Humans.txt */
+/* 为人类和搜索引擎提供友好的信息 */
+
+/* TEAM */
+Developer: GameHub Development Team
+Contact: dev@gamehub.com
+Website: https://gamehub.com
+Twitter: @gamehub
+GitHub: https://github.com/gamehub
+Location: Shanghai, China
+
+/* 技术栈 */
+Frontend: Next.js, React, TypeScript, Tailwind CSS
+Backend: Node.js, Prisma, SQLite/PostgreSQL
+Deployment: Docker, Vercel
+Monitoring: Prometheus, Grafana
+
+/* 标准 */
+Standards: HTML5, CSS3, ES2022, WCAG 2.1
+Components: Web Components, React Components
+APIs: RESTful, GraphQL (planned)
+
+/* 感谢 */
+Thanks to: 
+  - Next.js team for the amazing framework
+  - Tailwind CSS for utility-first CSS
+  - Prisma for database ORM
+  - Vercel for deployment platform
+  - All open source contributors
+
+/* 备注 */
+Note: This website is built with love and care.
+Last update: 2026-03-22
+Language: zh-CN, en-US

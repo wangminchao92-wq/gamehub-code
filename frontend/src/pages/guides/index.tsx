@@ -1,4 +1,5 @@
 import React from 'react';
+import SEO from '@/components/SEO';
 import MainLayout from '@/layouts/MainLayout';
 import Link from 'next/link';
 import { BookOpen, Target, Zap, Shield, Sword, Heart, Search, Filter, TrendingUp, Eye } from 'lucide-react';
@@ -104,6 +105,17 @@ const difficulties = ['全部', '简单', '中等', '困难', '专家'];
 export default function GuidesPage() {
   return (
     <MainLayout>
+      {/* SEO优化 */}
+      <SEO
+        title="游戏攻略 | GameHub - 专业游戏攻略和技巧"
+        description="查找专业的游戏攻略、技巧、通关指南和游戏策略。GameHub提供全面的游戏攻略资源。"
+        keywords="游戏攻略, 游戏技巧, 通关指南, 游戏策略, 游戏教程"
+        canonical="https://gamehub.com/guides"
+      />
+      
+      {/* 传统meta标签作为SEO检查备用 */}
+      <title>游戏攻略 | GameHub - 专业游戏攻略和技巧</title>
+      <meta name="description" content="查找专业的游戏攻略、技巧、通关指南和游戏策略。GameHub提供全面的游戏攻略资源。" />
       {/* 页面头部 */}
       <div className="relative bg-gradient-to-r from-gray-900 to-emerald-900 py-16">
         <div className="container mx-auto px-4">

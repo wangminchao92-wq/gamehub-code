@@ -1,0 +1,54 @@
+# ============================================
+# GameHub Prometheus 配置
+# ============================================
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+# 告警规则
+rule_files:
+  - "alerts.yml"
+
+# 抓取配置
+scrape_configs:
+  # Prometheus 自身监控
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # GameHub 应用监控
+  - job_name: 'gamehub'
+    static_configs:
+      - targets: ['app-prod:3000']
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+    scrape_timeout: 5s
+
+  # Node.js 应用监控
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']
+
+  # 数据库监控
+  - job_name: 'postgres-exporter'
+    static_configs:
+      - targets: ['postgres-exporter:9187']
+
+  # Redis 监控
+  - job_name: 'redis-exporter'
+    static_configs:
+      - targets: ['redis-exporter:9121']
+
+  # Nginx 监控
+  - job_name: 'nginx-exporter'
+    static_configs:
+      - targets: ['nginx-exporter:9113']
+
+# 远程写入配置 (可选)
+remote_write:
+  - url: "http://thanos-receive:10908/api/v1/receive"
+
+# 远程读取配置 (可选)
+remote_read:
+  - url: "http://thanos-query:10902/api/v1/read"

@@ -1,0 +1,586 @@
+{
+  "summary": {
+    "total": 27,
+    "passed": 2,
+    "failed": 25,
+    "successRate": 7,
+    "totalDuration": 15548,
+    "avgDuration": 576
+  },
+  "details": [
+    {
+      "name": "首页",
+      "url": "http://localhost:3000/",
+      "expectedStatus": 200,
+      "actualStatus": 500,
+      "duration": 2874,
+      "success": false,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "x-powered-by": "Next.js",
+        "etag": "\"7iz2josq8g2fg\"",
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "3348",
+        "vary": "Accept-Encoding",
+        "date": "Sun, 22 Mar 2026 13:38:00 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      },
+      "dataLength": 3148,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "name": "登录页面",
+      "url": "http://localhost:3000/login",
+      "expectedStatus": 200,
+      "actualStatus": 500,
+      "duration": 2869,
+      "success": false,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "x-powered-by": "Next.js",
+        "etag": "\"7iz2josq8g2fg\"",
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "3348",
+        "vary": "Accept-Encoding",
+        "date": "Sun, 22 Mar 2026 13:38:00 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      },
+      "dataLength": 3148,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "name": "注册页面",
+      "url": "http://localhost:3000/register",
+      "expectedStatus": 200,
+      "actualStatus": 500,
+      "duration": 2869,
+      "success": false,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "x-powered-by": "Next.js",
+        "etag": "\"7iz2josq8g2fg\"",
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "3348",
+        "vary": "Accept-Encoding",
+        "date": "Sun, 22 Mar 2026 13:38:00 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      },
+      "dataLength": 3148,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "name": "新闻列表页",
+      "url": "http://localhost:3000/news",
+      "expectedStatus": 200,
+      "actualStatus": 500,
+      "duration": 2868,
+      "success": false,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "x-powered-by": "Next.js",
+        "etag": "\"7iz2josq8g2fg\"",
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "3348",
+        "vary": "Accept-Encoding",
+        "date": "Sun, 22 Mar 2026 13:38:00 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      },
+      "dataLength": 3148,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "name": "社区页面",
+      "url": "http://localhost:3000/community",
+      "expectedStatus": 200,
+      "actualStatus": 500,
+      "duration": 2868,
+      "success": false,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "x-powered-by": "Next.js",
+        "etag": "\"7iz2josq8g2fg\"",
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "3348",
+        "vary": "Accept-Encoding",
+        "date": "Sun, 22 Mar 2026 13:38:00 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      },
+      "dataLength": 3148,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "name": "关于页面",
+      "url": "http://localhost:3000/about",
+      "expectedStatus": 200,
+      "actualStatus": 500,
+      "duration": 6,
+      "success": false,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "x-powered-by": "Next.js",
+        "etag": "\"7iz2josq8g2fg\"",
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "3348",
+        "vary": "Accept-Encoding",
+        "date": "Sun, 22 Mar 2026 13:38:00 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      },
+      "dataLength": 3148,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "name": "联系页面",
+      "url": "http://localhost:3000/contact",
+      "expectedStatus": 200,
+      "actualStatus": 500,
+      "duration": 6,
+      "success": false,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "x-powered-by": "Next.js",
+        "etag": "\"7iz2josq8g2fg\"",
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "3348",
+        "vary": "Accept-Encoding",
+        "date": "Sun, 22 Mar 2026 13:38:00 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      },
+      "dataLength": 3148,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "name": "文章详情页示例",
+      "url": "http://localhost:3000/news/sample-article",
+      "expectedStatus": 200,
+      "actualStatus": 500,
+      "duration": 7,
+      "success": false,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "x-powered-by": "Next.js",
+        "etag": "\"7iz2josq8g2fg\"",
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "3348",
+        "vary": "Accept-Encoding",
+        "date": "Sun, 22 Mar 2026 13:38:00 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      },
+      "dataLength": 3148,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "name": "用户个人中心示例",
+      "url": "http://localhost:3000/user/admin",
+      "expectedStatus": 200,
+      "actualStatus": 500,
+      "duration": 7,
+      "success": false,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "x-powered-by": "Next.js",
+        "etag": "\"7iz2josq8g2fg\"",
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "3348",
+        "vary": "Accept-Encoding",
+        "date": "Sun, 22 Mar 2026 13:38:00 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      },
+      "dataLength": 3148,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "name": "帖子详情页示例",
+      "url": "http://localhost:3000/community/post/sample-post",
+      "expectedStatus": 200,
+      "actualStatus": 500,
+      "duration": 8,
+      "success": false,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "x-powered-by": "Next.js",
+        "etag": "\"7iz2josq8g2fg\"",
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "3348",
+        "vary": "Accept-Encoding",
+        "date": "Sun, 22 Mar 2026 13:38:00 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      },
+      "dataLength": 3148,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "name": "健康检查API",
+      "url": "http://localhost:3000/api/health",
+      "expectedStatus": 200,
+      "actualStatus": 206,
+      "duration": 109,
+      "success": false,
+      "headers": {
+        "cache-control": "no-store, no-cache, must-revalidate, proxy-revalidate",
+        "pragma": "no-cache",
+        "expires": "0",
+        "surrogate-control": "no-store",
+        "content-type": "application/json; charset=utf-8",
+        "etag": "\"6rwg0a97op8u\"",
+        "content-length": "318",
+        "vary": "Accept-Encoding",
+        "date": "Sun, 22 Mar 2026 13:38:00 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      },
+      "dataLength": 318,
+      "contentType": "application/json; charset=utf-8"
+    },
+    {
+      "name": "文章API",
+      "url": "http://localhost:3000/api/articles",
+      "expectedStatus": 200,
+      "actualStatus": 500,
+      "duration": 7,
+      "success": false,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "x-powered-by": "Next.js",
+        "etag": "\"7iz2josq8g2fg\"",
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "3348",
+        "vary": "Accept-Encoding",
+        "date": "Sun, 22 Mar 2026 13:38:00 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      },
+      "dataLength": 3148,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "name": "帖子API",
+      "url": "http://localhost:3000/api/posts",
+      "expectedStatus": 200,
+      "actualStatus": 500,
+      "duration": 7,
+      "success": false,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "x-powered-by": "Next.js",
+        "etag": "\"7iz2josq8g2fg\"",
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "3348",
+        "vary": "Accept-Encoding",
+        "date": "Sun, 22 Mar 2026 13:38:00 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      },
+      "dataLength": 3148,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "name": "用户API",
+      "url": "http://localhost:3000/api/users",
+      "expectedStatus": 200,
+      "actualStatus": 500,
+      "duration": 8,
+      "success": false,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "x-powered-by": "Next.js",
+        "etag": "\"7iz2josq8g2fg\"",
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "3348",
+        "vary": "Accept-Encoding",
+        "date": "Sun, 22 Mar 2026 13:38:00 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      },
+      "dataLength": 3148,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "name": "通知API",
+      "url": "http://localhost:3000/api/notifications",
+      "expectedStatus": 401,
+      "actualStatus": 500,
+      "duration": 113,
+      "success": false,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "x-powered-by": "Next.js",
+        "etag": "\"7iz2josq8g2fg\"",
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "3348",
+        "vary": "Accept-Encoding",
+        "date": "Sun, 22 Mar 2026 13:38:00 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      },
+      "dataLength": 3148,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "name": "关注API",
+      "url": "http://localhost:3000/api/follow",
+      "expectedStatus": 401,
+      "actualStatus": 500,
+      "duration": 69,
+      "success": false,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "x-powered-by": "Next.js",
+        "etag": "\"7iz2josq8g2fg\"",
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "3348",
+        "vary": "Accept-Encoding",
+        "date": "Sun, 22 Mar 2026 13:38:00 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      },
+      "dataLength": 3148,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "name": "成就API",
+      "url": "http://localhost:3000/api/achievements",
+      "expectedStatus": 401,
+      "actualStatus": 500,
+      "duration": 70,
+      "success": false,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "x-powered-by": "Next.js",
+        "etag": "\"7iz2josq8g2fg\"",
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "3348",
+        "vary": "Accept-Encoding",
+        "date": "Sun, 22 Mar 2026 13:38:00 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      },
+      "dataLength": 3148,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "name": "Sitemap索引",
+      "url": "http://localhost:3000/api/sitemap-index.xml",
+      "expectedStatus": 200,
+      "actualStatus": 500,
+      "duration": 70,
+      "success": false,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "x-powered-by": "Next.js",
+        "etag": "\"7iz2josq8g2fg\"",
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "3348",
+        "vary": "Accept-Encoding",
+        "date": "Sun, 22 Mar 2026 13:38:00 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      },
+      "dataLength": 3148,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "name": "主Sitemap",
+      "url": "http://localhost:3000/api/sitemap.xml",
+      "expectedStatus": 200,
+      "actualStatus": 500,
+      "duration": 70,
+      "success": false,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "x-powered-by": "Next.js",
+        "etag": "\"7iz2josq8g2fg\"",
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "3348",
+        "vary": "Accept-Encoding",
+        "date": "Sun, 22 Mar 2026 13:38:00 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      },
+      "dataLength": 3148,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "name": "新闻Sitemap",
+      "url": "http://localhost:3000/api/sitemap-news.xml",
+      "expectedStatus": 200,
+      "actualStatus": 500,
+      "duration": 69,
+      "success": false,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "x-powered-by": "Next.js",
+        "etag": "\"7iz2josq8g2fg\"",
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "3348",
+        "vary": "Accept-Encoding",
+        "date": "Sun, 22 Mar 2026 13:38:00 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      },
+      "dataLength": 3148,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "name": "图片Sitemap",
+      "url": "http://localhost:3000/api/sitemap-images.xml",
+      "expectedStatus": 200,
+      "actualStatus": 500,
+      "duration": 244,
+      "success": false,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "x-powered-by": "Next.js",
+        "etag": "\"7iz2josq8g2fg\"",
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "3348",
+        "vary": "Accept-Encoding",
+        "date": "Sun, 22 Mar 2026 13:38:01 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      },
+      "dataLength": 3148,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "name": "Robots.txt",
+      "url": "http://localhost:3000/robots.txt",
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "duration": 3,
+      "success": true,
+      "headers": {
+        "cache-control": "public, max-age=3600, stale-while-revalidate=86400",
+        "accept-ranges": "bytes",
+        "last-modified": "Sun, 22 Mar 2026 09:21:39 GMT",
+        "etag": "W/\"63e-19d14d9a072\"",
+        "content-type": "text/plain; charset=UTF-8",
+        "content-length": "1598",
+        "vary": "Accept-Encoding",
+        "date": "Sun, 22 Mar 2026 13:38:00 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      },
+      "dataLength": 1382,
+      "contentType": "text/plain; charset=UTF-8"
+    },
+    {
+      "name": "Humans.txt",
+      "url": "http://localhost:3000/humans.txt",
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "duration": 4,
+      "success": true,
+      "headers": {
+        "cache-control": "public, max-age=3600, stale-while-revalidate=86400",
+        "accept-ranges": "bytes",
+        "last-modified": "Sun, 22 Mar 2026 08:58:47 GMT",
+        "etag": "W/\"36a-19d14c4b033\"",
+        "content-type": "text/plain; charset=UTF-8",
+        "content-length": "874",
+        "vary": "Accept-Encoding",
+        "date": "Sun, 22 Mar 2026 13:38:00 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      },
+      "dataLength": 826,
+      "contentType": "text/plain; charset=UTF-8"
+    },
+    {
+      "name": "管理后台登录",
+      "url": "http://localhost:3000/admin/login",
+      "expectedStatus": 200,
+      "actualStatus": 500,
+      "duration": 6,
+      "success": false,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "x-powered-by": "Next.js",
+        "etag": "\"7iz2josq8g2fg\"",
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "3348",
+        "vary": "Accept-Encoding",
+        "date": "Sun, 22 Mar 2026 13:38:00 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      },
+      "dataLength": 3148,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "name": "文章管理页面",
+      "url": "http://localhost:3000/admin/articles",
+      "expectedStatus": 302,
+      "actualStatus": 500,
+      "duration": 244,
+      "success": false,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "x-powered-by": "Next.js",
+        "etag": "\"7iz2josq8g2fg\"",
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "3348",
+        "vary": "Accept-Encoding",
+        "date": "Sun, 22 Mar 2026 13:38:01 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      },
+      "dataLength": 3148,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "name": "用户管理页面",
+      "url": "http://localhost:3000/admin/users",
+      "expectedStatus": 302,
+      "actualStatus": 500,
+      "duration": 66,
+      "success": false,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "x-powered-by": "Next.js",
+        "etag": "\"xwlqf62yzj2eq\"",
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "3254",
+        "vary": "Accept-Encoding",
+        "date": "Sun, 22 Mar 2026 13:38:01 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      },
+      "dataLength": 3122,
+      "contentType": "text/html; charset=utf-8"
+    },
+    {
+      "name": "设置管理页面",
+      "url": "http://localhost:3000/admin/settings",
+      "expectedStatus": 302,
+      "actualStatus": 500,
+      "duration": 7,
+      "success": false,
+      "headers": {
+        "cache-control": "no-store, must-revalidate",
+        "x-powered-by": "Next.js",
+        "etag": "\"7iz2josq8g2fg\"",
+        "content-type": "text/html; charset=utf-8",
+        "content-length": "3348",
+        "vary": "Accept-Encoding",
+        "date": "Sun, 22 Mar 2026 13:38:01 GMT",
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5"
+      },
+      "dataLength": 3148,
+      "contentType": "text/html; charset=utf-8"
+    }
+  ],
+  "recommendations": [
+    "发现服务器错误，请检查服务器日志"
+  ]
+}

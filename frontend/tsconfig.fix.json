@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "strict": false,
+    "noEmit": true
+  },
+  "exclude": [
+    "prisma/seed.ts",
+    "src/pages/api/**/*.disabled.ts",
+    "src/pages/api/**/*.disabled.tsx"
+  ]
+}

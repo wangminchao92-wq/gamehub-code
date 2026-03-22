@@ -1,0 +1,600 @@
+/* GameHub 触摸优化样式 */
+/* 目标：提升移动端触摸交互体验，确保所有交互元素触摸友好 */
+
+/* ==================== 基础触摸优化 ==================== */
+
+/* 1. 触摸目标最小尺寸 - 符合WCAG 2.1标准 */
+.touch-target {
+  /* 最小44x44像素，推荐48x48像素 */
+  min-height: 48px;
+  min-width: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* 触摸目标扩展区域（增加可点击区域但不影响布局） */
+.touch-target-expanded::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+}
+
+/* 2. 防止双击缩放 */
+* {
+  touch-action: manipulation;
+}
+
+/* 3. 优化滚动体验 */
+.touch-scroll {
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+}
+
+/* 4. 禁用文本选择（避免误触选择） */
+.no-text-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* ==================== 按钮触摸优化 ==================== */
+
+/* 基础按钮触摸优化 */
+.btn-touch {
+  @apply touch-target no-text-select;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+/* 小尺寸按钮（仍需满足触摸目标） */
+.btn-touch-sm {
+  @apply touch-target no-text-select;
+  padding: 10px 20px;
+  font-size: 14px;
+  min-height: 44px; /* 最小44px */
+  min-width: 44px;
+}
+
+/* 图标按钮 */
+.btn-icon-touch {
+  @apply touch-target no-text-select;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 按钮触摸反馈 */
+.btn-touch:active,
+.btn-touch-sm:active,
+.btn-icon-touch:active {
+  transform: scale(0.95);
+  opacity: 0.8;
+}
+
+/* 禁用状态 */
+.btn-touch:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* ==================== 链接触摸优化 ==================== */
+
+/* 内联链接 */
+.link-touch {
+  @apply no-text-select;
+  padding: 4px 8px;
+  margin: -4px -8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+/* 块级链接 */
+.link-block-touch {
+  @apply touch-target no-text-select;
+  display: block;
+  padding: 12px 16px;
+  border-radius: 8px;
+}
+
+/* 链接触摸反馈 */
+.link-touch:active,
+.link-block-touch:active {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* ==================== 表单元素触摸优化 ==================== */
+
+/* 输入框 */
+.input-touch {
+  min-height: 48px;
+  padding: 12px 16px;
+  font-size: 16px; /* 防止iOS缩放 */
+  border-radius: 8px;
+}
+
+/* 复选框和单选框 */
+.checkbox-touch,
+.radio-touch {
+  width: 24px;
+  height: 24px;
+}
+
+.checkbox-touch + label,
+.radio-touch + label {
+  @apply touch-target;
+  padding: 12px;
+  margin-left: 8px;
+}
+
+/* 选择框 */
+.select-touch {
+  min-height: 48px;
+  padding: 12px 16px;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+/* 表单标签 */
+.label-touch {
+  @apply touch-target;
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+/* ==================== 导航触摸优化 ==================== */
+
+/* 导航项 */
+.nav-item-touch {
+  @apply touch-target no-text-select;
+  padding: 12px 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 汉堡菜单按钮 */
+.hamburger-touch {
+  @apply touch-target no-text-select;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.hamburger-touch span {
+  width: 24px;
+  height: 3px;
+  background-color: currentColor;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* 面包屑导航 */
+.breadcrumb-touch {
+  @apply touch-target no-text-select;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+/* ==================== 卡片和列表触摸优化 ==================== */
+
+/* 可点击卡片 */
+.card-touch {
+  @apply touch-target no-text-select;
+  border-radius: 12px;
+  padding: 16px;
+  transition: all 0.2s ease;
+}
+
+.card-touch:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 列表项 */
+.list-item-touch {
+  @apply touch-target no-text-select;
+  padding: 16px;
+  border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.2s ease;
+}
+
+.list-item-touch:active {
+  background-color: #f3f4f6;
+}
+
+/* 网格项 */
+.grid-item-touch {
+  @apply touch-target no-text-select;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.grid-item-touch:active {
+  transform: scale(0.98);
+}
+
+/* ==================== 交互组件触摸优化 ==================== */
+
+/* 标签/徽章 */
+.badge-touch {
+  @apply touch-target no-text-select;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  min-height: 32px;
+}
+
+/* 分页 */
+.pagination-touch .page-item {
+  @apply touch-target no-text-select;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 选项卡 */
+.tab-touch {
+  @apply touch-target no-text-select;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+/* 折叠面板 */
+.accordion-touch {
+  @apply touch-target no-text-select;
+  padding: 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ==================== 媒体元素触摸优化 ==================== */
+
+/* 图片按钮（如相册） */
+.image-button-touch {
+  @apply touch-target no-text-select;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.image-button-touch:active::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* 视频控制按钮 */
+.video-control-touch {
+  @apply touch-target no-text-select;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==================== 工具类 ==================== */
+
+/* 触摸反馈颜色 */
+.touch-feedback-primary:active {
+  background-color: rgba(59, 130, 246, 0.1) !important;
+}
+
+.touch-feedback-secondary:active {
+  background-color: rgba(107, 114, 128, 0.1) !important;
+}
+
+.touch-feedback-success:active {
+  background-color: rgba(34, 197, 94, 0.1) !important;
+}
+
+.touch-feedback-danger:active {
+  background-color: rgba(239, 68, 68, 0.1) !important;
+}
+
+/* 触摸涟漪效果（类似Material Design） */
+.touch-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.touch-ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+.touch-ripple:active::after {
+  animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(20, 20);
+    opacity: 0;
+  }
+}
+
+/* 长按提示 */
+.long-press-hint {
+  position: relative;
+}
+
+.long-press-hint::before {
+  content: '长按查看更多选项';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #374151;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.long-press-hint:hover::before {
+  opacity: 1;
+}
+
+/* ==================== 响应式调整 ==================== */
+
+/* 小屏幕设备优化 */
+@media (max-width: 640px) {
+  /* 在小屏幕上进一步增大触摸目标 */
+  .touch-target-mobile {
+    min-height: 52px;
+    min-width: 52px;
+  }
+  
+  /* 增加按钮内边距 */
+  .btn-touch {
+    padding: 14px 28px;
+  }
+  
+  /* 增加导航项间距 */
+  .nav-item-touch {
+    margin-bottom: 4px;
+  }
+  
+  /* 调整卡片内边距 */
+  .card-touch {
+    padding: 20px;
+  }
+}
+
+/* 超大屏幕调整 */
+@media (min-width: 1024px) {
+  /* 在桌面上可以稍微减小触摸目标 */
+  .touch-target-desktop {
+    min-height: 40px;
+    min-width: 40px;
+  }
+}
+
+/* ==================== 辅助功能 ==================== */
+
+/* 高对比度模式支持 */
+@media (prefers-contrast: high) {
+  .touch-target {
+    border: 2px solid currentColor;
+  }
+  
+  .btn-touch:active,
+  .card-touch:active,
+  .list-item-touch:active {
+    border-color: #000;
+  }
+}
+
+/* 减少动画模式 */
+@media (prefers-reduced-motion: reduce) {
+  .btn-touch:active,
+  .card-touch:active,
+  .grid-item-touch:active,
+  .touch-ripple::after {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* ==================== 浏览器特定优化 ==================== */
+
+/* iOS Safari 优化 */
+@supports (-webkit-touch-callout: none) {
+  .touch-target {
+    /* iOS需要更大的触摸目标 */
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* 防止iOS文本缩放 */
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
+
+/* Android Chrome 优化 */
+@supports (-webkit-tap-highlight-color: transparent) {
+  .touch-target {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* ==================== 实用工具类 ==================== */
+
+/* 间距工具类 */
+.touch-gap-xs > * + * {
+  margin-left: 8px;
+}
+
+.touch-gap-sm > * + * {
+  margin-left: 12px;
+}
+
+.touch-gap-md > * + * {
+  margin-left: 16px;
+}
+
+.touch-gap-lg > * + * {
+  margin-left: 24px;
+}
+
+/* 布局工具类 */
+.touch-flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.touch-flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.touch-flex-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* ==================== 组件特定优化 ==================== */
+
+/* 搜索框 */
+.search-box-touch {
+  @apply touch-target;
+  min-height: 48px;
+  padding: 0 16px;
+  border-radius: 24px;
+}
+
+/* 用户头像 */
+.avatar-touch {
+  @apply touch-target;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+/* 评分组件 */
+.rating-touch .star {
+  @apply touch-target;
+  width: 32px;
+  height: 32px;
+  padding: 8px;
+}
+
+/* 社交分享按钮 */
+.share-button-touch {
+  @apply touch-target;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==================== 测试辅助类 ==================== */
+
+/* 触摸目标可视化（开发时使用） */
+.touch-debug .touch-target {
+  outline: 2px solid #f00;
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+.touch-debug .touch-target::after {
+  outline: 2px dashed #00f;
+}
+
+/* 最小尺寸检查 */
+.touch-size-check {
+  position: relative;
+}
+
+.touch-size-check::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 48px;
+  height: 48px;
+  background-color: rgba(0, 255, 0, 0.1);
+  border: 1px dashed #0f0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ==================== 导入说明 ==================== */
+
+/*
+使用方法：
+1. 在 _app.tsx 中导入此文件
+2. 为交互元素添加相应的类名
+3. 使用 touch-debug 类检查触摸目标
+
+示例：
+<button className="btn-touch touch-target">按钮</button>
+<a className="link-block-touch touch-target">链接</a>
+<div className="card-touch touch-target">卡片</div>
+
+优化原则：
+1. 所有交互元素最小44x44像素
+2. 提供清晰的触摸反馈
+3. 确保足够的间距防止误触
+4. 支持不同的设备和辅助功能
+*/

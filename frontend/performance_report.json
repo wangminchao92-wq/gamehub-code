@@ -1,0 +1,104 @@
+{
+  "timestamp": "2026-03-22T05:35:59.975Z",
+  "urls": [
+    {
+      "url": "http://localhost:3000/",
+      "name": "首页"
+    },
+    {
+      "url": "http://localhost:3000/news/ultra-simple/cyberpunk-2077-2-0-review",
+      "name": "文章详情页"
+    },
+    {
+      "url": "http://localhost:3000/user/ultra-simple/admin",
+      "name": "用户个人中心"
+    },
+    {
+      "url": "http://localhost:3000/community/post/ultra-simple/cmn19p2xr0005jd5sb9h1jo0p",
+      "name": "帖子详情页"
+    }
+  ],
+  "statistics": {
+    "pageLoadTime": {
+      "avg": 77.36225,
+      "min": 21.499000000000002,
+      "max": 146.008,
+      "count": 4
+    },
+    "pageSize": {
+      "avg": 27.7861328125,
+      "min": 12.9736328125,
+      "max": 69.53125,
+      "count": 4
+    },
+    "requests": {
+      "avg": 1,
+      "min": 1,
+      "max": 1,
+      "count": 4
+    },
+    "imageCount": {
+      "avg": 2.25,
+      "min": 1,
+      "max": 3,
+      "count": 4
+    },
+    "scriptCount": {
+      "avg": 9.5,
+      "min": 9,
+      "max": 11,
+      "count": 4
+    },
+    "cssCount": {
+      "avg": 0,
+      "min": 0,
+      "max": 0,
+      "count": 4
+    }
+  },
+  "optimizationSuggestions": {
+    "lazyImages": true,
+    "mobileFriendly": false,
+    "touchFriendly": true,
+    "loadTime": false,
+    "pageSize": false
+  },
+  "rawMetrics": {
+    "pageLoadTime": [
+      21.499000000000002,
+      146.008,
+      71.393,
+      70.549
+    ],
+    "pageSize": [
+      71200,
+      14463,
+      14864,
+      13285
+    ],
+    "requests": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "imageCount": [
+      3,
+      3,
+      2,
+      1
+    ],
+    "scriptCount": [
+      11,
+      9,
+      9,
+      9
+    ],
+    "cssCount": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

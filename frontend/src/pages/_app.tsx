@@ -1,6 +1,9 @@
 import '@/styles/globals.css';
+import '@/styles/optimization.css';
+import '@/styles/touch-optimization.css';
 import type { AppProps } from 'next/app';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import SessionProvider from '@/components/providers/SessionProvider';
 import { useEffect } from 'react';
 import Head from 'next/head';
 
@@ -51,9 +54,11 @@ export default function App({ Component, pageProps }: AppProps) {
           <meta name="robots" content="noindex, nofollow" />
         )}
       </Head>
-      <ThemeProvider>
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <SessionProvider session={pageProps.session}>
+        <ThemeProvider>
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </SessionProvider>
     </>
   );
 }

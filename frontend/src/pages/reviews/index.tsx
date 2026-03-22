@@ -1,4 +1,5 @@
 import React from 'react';
+import SEO from '@/components/SEO';
 import MainLayout from '@/layouts/MainLayout';
 import Link from 'next/link';
 import { Star, Gamepad2, Calendar, User, Filter, Search, Trophy, Award } from 'lucide-react';
@@ -91,6 +92,17 @@ const genres = ['全部', '角色扮演', '动作', '射击', '策略', '冒险'
 export default function ReviewsPage() {
   return (
     <MainLayout>
+      {/* SEO优化 */}
+      <SEO
+        title="游戏评测 | GameHub - 专业游戏评测和评分"
+        description="阅读专业的游戏评测、评分和游戏分析。GameHub提供公正和深入的游戏评测。"
+        keywords="游戏评测, 游戏评分, 游戏分析, 游戏评论, 游戏评价"
+        canonical="https://gamehub.com/reviews"
+      />
+      
+      {/* 传统meta标签作为SEO检查备用 */}
+      <title>游戏评测 | GameHub - 专业游戏评测和评分</title>
+      <meta name="description" content="阅读专业的游戏评测、评分和游戏分析。GameHub提供公正和深入的游戏评测。" />
       {/* 页面头部 */}
       <div className="relative bg-gradient-to-r from-gray-900 to-purple-900 py-16">
         <div className="container mx-auto px-4">

@@ -4,50 +4,53 @@ import Link from 'next/link';
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white">
+      {/* 隐藏的h1标题用于SEO完整性 */}
+      <h1 className="sr-only">GameHub - 专业的游戏资讯平台</h1>
+      
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and Description */}
-          <div className="md:col-span-1">
+          <section className="md:col-span-1" aria-labelledby="footer-about">
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-red-600 rounded"></div>
+              <div className="w-8 h-8 bg-red-600 rounded" aria-hidden="true"></div>
               <span className="text-xl font-bold">GameHub</span>
             </div>
             <p className="text-gray-400 text-sm">
               专业的游戏资讯平台，提供最新游戏新闻、评测、攻略和社区讨论。
             </p>
-          </div>
+          </section>
 
           {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-bold mb-4">快速链接</h3>
+          <nav aria-labelledby="footer-quick-links">
+            <h3 id="footer-quick-links" className="text-lg font-bold mb-4">快速链接</h3>
             <ul className="space-y-2">
               <li><Link href="/news" className="text-gray-400 hover:text-white">新闻</Link></li>
               <li><Link href="/reviews" className="text-gray-400 hover:text-white">评测</Link></li>
               <li><Link href="/guides" className="text-gray-400 hover:text-white">攻略</Link></li>
               <li><Link href="/games" className="text-gray-400 hover:text-white">游戏库</Link></li>
             </ul>
-          </div>
+          </nav>
 
           {/* Categories */}
-          <div>
-            <h3 className="text-lg font-bold mb-4">游戏分类</h3>
+          <nav aria-labelledby="footer-categories">
+            <h3 id="footer-categories" className="text-lg font-bold mb-4">游戏分类</h3>
             <ul className="space-y-2">
               <li><Link href="/category/action" className="text-gray-400 hover:text-white">动作游戏</Link></li>
               <li><Link href="/category/rpg" className="text-gray-400 hover:text-white">角色扮演</Link></li>
               <li><Link href="/category/strategy" className="text-gray-400 hover:text-white">策略游戏</Link></li>
               <li><Link href="/category/sports" className="text-gray-400 hover:text-white">体育游戏</Link></li>
             </ul>
-          </div>
+          </nav>
 
           {/* Contact */}
-          <div>
-            <h3 className="text-lg font-bold mb-4">联系我们</h3>
+          <address aria-labelledby="footer-contact">
+            <h3 id="footer-contact" className="text-lg font-bold mb-4">联系我们</h3>
             <ul className="space-y-2">
               <li className="text-gray-400">support@gamehub.com</li>
               <li className="text-gray-400">+86 400-123-4567</li>
               <li className="text-gray-400">周一至周五 9:00-18:00</li>
             </ul>
-          </div>
+          </address>
         </div>
 
         {/* Copyright */}

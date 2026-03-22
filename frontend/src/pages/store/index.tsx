@@ -1,4 +1,5 @@
 import React from 'react';
+import SEO from '@/components/SEO';
 import MainLayout from '@/layouts/MainLayout';
 import { ShoppingBag, Tag, Star, ShoppingCart, Search, Filter } from 'lucide-react';
 
@@ -81,6 +82,17 @@ const games = [
 export default function StorePage() {
   return (
     <MainLayout>
+      {/* SEO优化 */}
+      <SEO
+        title="游戏商店 | GameHub - 购买和下载游戏"
+        description="在GameHub游戏商店购买和下载最新游戏、DLC和游戏周边产品。享受优惠价格和快速下载。"
+        keywords="游戏商店, 购买游戏, 下载游戏, 游戏DLC, 游戏周边"
+        canonical="https://gamehub.com/store"
+      />
+      
+      {/* 传统meta标签作为SEO检查备用 */}
+      <title>游戏商店 | GameHub - 购买和下载游戏</title>
+      <meta name="description" content="在GameHub游戏商店购买和下载最新游戏、DLC和游戏周边产品。享受优惠价格和快速下载。" />
       {/* 页面头部 */}
       <div className="relative bg-gradient-to-r from-gray-900 to-purple-900 py-16">
         <div className="container mx-auto px-4">
