@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameHub 访问测试</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .status {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .test-link {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .test-link:hover {
+            background-color: #0056b3;
+        }
+        .server-info {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid #e9ecef;
+        }
+        .troubleshooting {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid #ffeaa7;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎮 GameHub 访问测试页面</h1>
+    
+    <div class="server-info">
+        <h3>📡 服务器信息</h3>
+        <p><strong>地址:</strong> http://localhost:3001</p>
+        <p><strong>启动时间:</strong> 2026-03-23 20:49 (已运行约17分钟)</p>
+        <p><strong>状态:</strong> <span id="status">检测中...</span></p>
+    </div>
+
+    <div id="test-results">
+        <h3>🔧 测试链接</h3>
+        <p>点击以下链接测试访问：</p>
+        <div>
+            <a href="http://localhost:3001" class="test-link" target="_blank">🏠 首页</a>
+            <a href="http://localhost:3001/news" class="test-link" target="_blank">📰 新闻页</a>
+            <a href="http://localhost:3001/reviews" class="test-link" target="_blank">🎯 评测页</a>
+            <a href="http://localhost:3001/guides" class="test-link" target="_blank">📚 攻略页</a>
+            <a href="http://localhost:3001/community" class="test-link" target="_blank">💬 社区页</a>
+        </div>
+    </div>
+
+    <div class="troubleshooting">
+        <h3>🔍 常见问题排查</h3>
+        <h4>如果网页打不开，请尝试：</h4>
+        <ol>
+            <li><strong>检查端口</strong>: 确保访问的是 <code>http://localhost:3001</code> 而不是 <code>http://localhost:3000</code></li>
+            <li><strong>清除缓存</strong>: 按 Ctrl+F5 (Windows) 或 Cmd+Shift+R (Mac) 强制刷新</li>
+            <li><strong>尝试其他浏览器</strong>: Chrome、Firefox、Safari 等</li>
+            <li><strong>检查防火墙</strong>: 确保本地端口3001没有被防火墙阻止</li>
+            <li><strong>直接访问IP</strong>: 尝试 <code>http://127.0.0.1:3001</code></li>
+        </ol>
+        
+        <h4>快速诊断命令 (终端中运行):</h4>
+        <pre style="background: #f4f4f4; padding: 10px; border-radius: 5px;">
+# 测试服务器连接
+curl -I http://localhost:3001
+
+# 检查端口占用
+lsof -i :3001
+
+# 检查进程状态
+ps aux | grep "next dev" | grep -v grep
+        </pre>
+    </div>
+
+    <div>
+        <h3>📊 服务器状态监控</h3>
+        <div id="health-check">
+            <p>健康检查: <span id="health-status">检测中...</span></p>
+            <p>响应时间: <span id="response-time">-</span> ms</p>
+        </div>
+    </div>
+
+    <script>
+        // 测试服务器状态
+        async function testServer() {
+            try {
+                const startTime = Date.now();
+                const response = await fetch('http://localhost:3001/api/health');
+                const endTime = Date.now();
+                const responseTime = endTime - startTime;
+                
+                if (response.ok) {
+                    document.getElementById('status').innerHTML = '✅ 服务器运行正常';
+                    document.getElementById('status').parentElement.parentElement.classList.add('success');
+                    
+                    const data = await response.json();
+                    document.getElementById('health-status').innerHTML = `✅ 健康 (${data.status})`;
+                    document.getElementById('response-time').innerHTML = responseTime;
+                    
+                    // 更新运行时间
+                    const uptime = Math.floor(data.uptime);
+                    const hours = Math.floor(uptime / 3600);
+                    const minutes = Math.floor((uptime % 3600) / 60);
+                    const seconds = uptime % 60;
+                    document.querySelector('.server-info p:nth-child(2)').innerHTML = 
+                        `<strong>启动时间:</strong> 2026-03-23 20:49 (已运行 ${hours}小时${minutes}分钟${seconds}秒)`;
+                } else {
+                    document.getElementById('status').innerHTML = '❌ 服务器异常';
+                    document.getElementById('status').parentElement.parentElement.classList.add('error');
+                    document.getElementById('health-status').innerHTML = '❌ 健康检查失败';
+                }
+            } catch (error) {
+                document.getElementById('status').innerHTML = '❌ 无法连接到服务器';
+                document.getElementById('status').parentElement.parentElement.classList.add('error');
+                document.getElementById('health-status').innerHTML = '❌ 连接失败';
+                console.error('测试失败:', error);
+            }
+        }
+
+        // 页面加载时测试
+        document.addEventListener('DOMContentLoaded', testServer);
+        
+        // 每30秒更新一次状态
+        setInterval(testServer, 30000);
+    </script>
+</body>
+</html>

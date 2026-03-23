@@ -1,52 +1,80 @@
-# GameHub - IGN风格游戏门户网站
+# GameHub游戏社区平台
 
-> GameHub是一个现代化的游戏资讯门户网站，采用IGN风格设计，提供游戏新闻、评测、攻略、视频、社区和商店等功能。网站采用Next.js 14构建，支持响应式设计、多语言界面和LLM友好内容。
+> GameHub是一个现代化的游戏社区平台，基于Next.js 14构建，提供游戏新闻、社区论坛、用户个人中心、成就系统等核心功能。平台采用TypeScript开发，支持SSR和SSG，集成NextAuth.js认证系统，为游戏爱好者提供最佳的社区体验。
 
-GameHub致力于为游戏玩家提供一站式游戏资讯服务，包括：
-- 最新的游戏新闻和行业动态
-- 专业的游戏评测和评分
-- 详细的游戏攻略和指南
-- 高质量的游戏视频内容
-- 活跃的游戏玩家社区
-- 正版游戏购买平台
+GameHub致力于为游戏爱好者提供全方位的社区服务：
+- 提供最新的游戏新闻和深度文章
+- 构建活跃的游戏社区讨论环境
+- 实现个性化的用户个人中心和成就系统
+- 采用现代化的技术栈和用户体验设计
+- 支持多种登录方式和五级权限系统
 
-网站采用现代化的技术栈：Next.js 14、React 18、TypeScript、Tailwind CSS，确保高性能和优秀的用户体验。
+平台技术特色：
+- **前端框架**: Next.js 14 + TypeScript + Tailwind CSS
+- **认证系统**: NextAuth.js (邮箱/密码、GitHub、Google OAuth)
+- **数据库**: Prisma + SQLite (开发) / PostgreSQL (生产)
+- **部署平台**: Vercel (推荐) 或 自托管
+- **SEO优化**: 完整的Google SEO规范实现
+- **AI优化**: llms.txt规范支持，提高AI搜索可见性
 
-## 核心功能
+## 核心功能页面
 
-- [首页](https://gamehub.example.com/index.html.md): 网站主页面，展示热门游戏和最新资讯
-- [新闻](https://gamehub.example.com/news/index.html.md): 游戏行业新闻和动态报道
-- [评测](https://gamehub.example.com/reviews/index.html.md): 专业游戏评测和评分系统
-- [攻略](https://gamehub.example.com/guides/index.html.md): 游戏攻略、技巧和指南
-- [视频](https://gamehub.example.com/videos/index.html.md): 游戏视频、直播和幕后内容
-- [社区](https://gamehub.example.com/community/index.html.md): 玩家交流、分享和讨论平台
-- [商店](https://gamehub.example.com/store/index.html.md): 正版游戏购买和特价优惠
+- [首页](https://gamehub.example.com/index.html.md): 平台概览、特色功能和最新内容展示，包含游戏新闻、社区动态、热门话题
+- [游戏新闻](https://gamehub.example.com/news/index.html.md): 游戏行业新闻、评测、深度文章和最新动态，支持分类浏览和搜索
+- [社区论坛](https://gamehub.example.com/community/index.html.md): 游戏讨论、话题分享、社区互动和内容创作平台
+- [用户中心](https://gamehub.example.com/user/index.html.md): 个人资料管理、成就展示、活动记录和社交功能
+- [登录注册](https://gamehub.example.com/login.html.md): 用户认证、账户管理、安全设置和多方式登录支持
+- [帖子详情](https://gamehub.example.com/community/post/[id].html.md): 社区帖子详细内容、评论互动和讨论
+- [文章详情](https://gamehub.example.com/news/[slug].html.md): 游戏新闻文章详细内容、相关推荐和评论
 
 ## 技术文档
 
-- [API文档](https://gamehub.example.com/api/docs.html.md): 后端API接口文档
-- [开发指南](https://gamehub.example.com/docs/development.html.md): 网站开发和技术架构说明
-- [部署指南](https://gamehub.example.com/docs/deployment.html.md): 生产环境部署和配置指南
-- [贡献指南](https://gamehub.example.com/docs/contributing.html.md): 贡献代码和参与开发的指南
+- [API文档](https://gamehub.example.com/api/docs.html.md): 完整的REST API接口文档、使用指南和示例代码
+- [部署指南](https://gamehub.example.com/docs/deployment.html.md): 生产环境部署步骤、配置说明和最佳实践
+- [开发指南](https://gamehub.example.com/docs/development.html.md): 项目开发环境设置、编码规范和协作流程
+- [架构设计](https://gamehub.example.com/docs/architecture.html.md): 系统架构设计、技术选型决策和扩展方案
+- [认证系统](https://gamehub.example.com/docs/auth.html.md): NextAuth.js集成、权限管理和安全配置
+- [数据库设计](https://gamehub.example.com/docs/database.html.md): 数据库架构、Prisma配置和数据迁移
 
-## 内容结构
+## 管理后台
 
-- [新闻分类](https://gamehub.example.com/news/categories.html.md): 新闻内容分类和标签系统
-- [评测标准](https://gamehub.example.com/reviews/standards.html.md): 游戏评测标准和评分体系
-- [攻略分类](https://gamehub.example.com/guides/categories.html.md): 攻略内容分类和难度分级
-- [视频分类](https://gamehub.example.com/videos/categories.html.md): 视频内容分类和播放指南
+- [内容管理](https://gamehub.example.com/admin/articles.html.md): 文章发布、编辑、审核和内容管理系统
+- [用户管理](https://gamehub.example.com/admin/users.html.md): 用户账户管理、权限控制和安全管理
+- [系统设置](https://gamehub.example.com/admin/settings.html.md): 平台配置、功能开关和系统维护工具
+- [社区管理](https://gamehub.example.com/admin/community.html.md): 帖子审核、评论管理和社区规则设置
+- [数据分析](https://gamehub.example.com/admin/analytics.html.md): 用户行为分析、内容统计和业务指标
 
-## 用户指南
+## 用户功能
 
-- [注册登录](https://gamehub.example.com/docs/registration.html.md): 用户注册和登录流程说明
-- [个人中心](https://gamehub.example.com/docs/profile.html.md): 个人资料和设置管理
-- [社区规则](https://gamehub.example.com/docs/community-rules.html.md): 社区行为规范和指南
-- [购买指南](https://gamehub.example.com/docs/purchase-guide.html.md): 游戏购买流程和注意事项
+- [成就系统](https://gamehub.example.com/user/achievements.html.md): 游戏成就、徽章系统和进度追踪
+- [个人资料](https://gamehub.example.com/user/profile.html.md): 个人信息、头像设置和社交链接
+- [活动记录](https://gamehub.example.com/user/activity.html.md): 发布内容、评论记录和互动历史
+- [消息通知](https://gamehub.example.com/user/notifications.html.md): 系统通知、社区提醒和私信功能
+- [收藏夹](https://gamehub.example.com/user/favorites.html.md): 收藏文章、帖子和感兴趣内容
 
-## Optional
+## 社区功能
 
-- [设计系统](https://gamehub.example.com/docs/design-system.html.md): 网站UI设计规范和组件库
-- [性能优化](https://gamehub.example.com/docs/performance.html.md): 网站性能优化策略
-- [SEO指南](https://gamehub.example.com/docs/seo.html.md): 搜索引擎优化最佳实践
-- [多语言支持](https://gamehub.example.com/docs/i18n.html.md): 多语言界面实现方案
-- [无障碍访问](https://gamehub.example.com/docs/accessibility.html.md): 无障碍访问支持说明
+- [话题讨论](https://gamehub.example.com/community/topics.html.md): 热门话题、游戏讨论和兴趣小组
+- [内容创作](https://gamehub.example.com/community/create.html.md): 发布帖子、分享经验和内容创作工具
+- [评论互动](https://gamehub.example.com/community/comments.html.md): 评论系统、点赞功能和互动机制
+- [搜索功能](https://gamehub.example.com/community/search.html.md): 内容搜索、过滤和发现工具
+- [排行榜](https://gamehub.example.com/community/leaderboard.html.md): 活跃用户、热门内容和社区贡献者
+
+## 开发资源
+
+- [GitHub仓库](https://github.com/example/gamehub): 项目源代码、问题追踪和贡献指南
+- [组件库](https://gamehub.example.com/docs/components.html.md): 可复用UI组件、设计规范和样式指南
+- [工具脚本](https://gamehub.example.com/docs/tools.html.md): 开发工具、自动化脚本和实用程序
+- [测试套件](https://gamehub.example.com/docs/testing.html.md): 测试框架、测试用例和质量保证
+- [部署脚本](https://gamehub.example.com/docs/deploy-scripts.html.md): 部署自动化、CI/CD配置和运维工具
+
+## 可选
+
+- [设计系统](https://gamehub.example.com/docs/design-system.html.md): UI组件库、设计规范、颜色系统和排版指南
+- [性能优化](https://gamehub.example.com/docs/performance.html.md): 性能监控、优化策略、缓存机制和最佳实践
+- [安全指南](https://gamehub.example.com/docs/security.html.md): 安全配置、漏洞防护、合规要求和安全审计
+- [监控告警](https://gamehub.example.com/docs/monitoring.html.md): 系统监控、日志管理、告警配置和故障排除
+- [SEO优化](https://gamehub.example.com/docs/seo.html.md): 搜索引擎优化、结构化数据、sitemap和元数据
+- [国际化](https://gamehub.example.com/docs/i18n.html.md): 多语言支持、本地化配置和翻译管理
+- [无障碍访问](https://gamehub.example.com/docs/accessibility.html.md): 无障碍设计、屏幕阅读器支持和可用性指南
+- [移动端优化](https://gamehub.example.com/docs/mobile.html.md): 移动端适配、触摸优化和响应式设计

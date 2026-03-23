@@ -1,0 +1,125 @@
+{
+  "timestamp": "2026-03-22T16:46:44.682Z",
+  "testFiles": [
+    "llms.txt",
+    "index.html.md",
+    "news/index.html.md",
+    "community/index.html.md",
+    "user/index.html.md",
+    "login.html.md"
+  ],
+  "results": [
+    {
+      "file": "llms.txt",
+      "exists": true,
+      "size": 6120,
+      "lines": 80
+    },
+    {
+      "file": "index.html.md",
+      "exists": true,
+      "size": 10200,
+      "lines": 303
+    },
+    {
+      "file": "news/index.html.md",
+      "exists": true,
+      "size": 8405,
+      "lines": 243
+    },
+    {
+      "file": "community/index.html.md",
+      "exists": true,
+      "size": 8913,
+      "lines": 266
+    },
+    {
+      "file": "user/index.html.md",
+      "exists": true,
+      "size": 8823,
+      "lines": 268
+    },
+    {
+      "file": "login.html.md",
+      "exists": true,
+      "size": 7602,
+      "lines": 234
+    }
+  ],
+  "llmsFormat": {
+    "errors": [],
+    "warnings": [],
+    "h2Count": 7,
+    "linkCount": 41,
+    "links": [
+      {
+        "title": "首页",
+        "url": "https://gamehub.example.com/index.html.md",
+        "description": "平台概览、特色功能和最新内容展示，包含游戏新闻、社区动态、热门话题"
+      },
+      {
+        "title": "游戏新闻",
+        "url": "https://gamehub.example.com/news/index.html.md",
+        "description": "游戏行业新闻、评测、深度文章和最新动态，支持分类浏览和搜索"
+      },
+      {
+        "title": "社区论坛",
+        "url": "https://gamehub.example.com/community/index.html.md",
+        "description": "游戏讨论、话题分享、社区互动和内容创作平台"
+      },
+      {
+        "title": "用户中心",
+        "url": "https://gamehub.example.com/user/index.html.md",
+        "description": "个人资料管理、成就展示、活动记录和社交功能"
+      },
+      {
+        "title": "登录注册",
+        "url": "https://gamehub.example.com/login.html.md",
+        "description": "用户认证、账户管理、安全设置和多方式登录支持"
+      }
+    ]
+  },
+  "qualityResults": [
+    {
+      "file": "index.html.md",
+      "hasTitle": true,
+      "hasContent": true,
+      "lineCount": 303,
+      "avgLineLength": 20,
+      "quality": "需要改进"
+    },
+    {
+      "file": "news/index.html.md",
+      "hasTitle": true,
+      "hasContent": true,
+      "lineCount": 243,
+      "avgLineLength": 16,
+      "quality": "需要改进"
+    },
+    {
+      "file": "community/index.html.md",
+      "hasTitle": true,
+      "hasContent": true,
+      "lineCount": 266,
+      "avgLineLength": 16,
+      "quality": "需要改进"
+    },
+    {
+      "file": "user/index.html.md",
+      "hasTitle": true,
+      "hasContent": true,
+      "lineCount": 268,
+      "avgLineLength": 16,
+      "quality": "需要改进"
+    },
+    {
+      "file": "login.html.md",
+      "hasTitle": true,
+      "hasContent": true,
+      "lineCount": 234,
+      "avgLineLength": 16,
+      "quality": "需要改进"
+    }
+  ],
+  "allPassed": true
+}

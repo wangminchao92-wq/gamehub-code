@@ -371,7 +371,11 @@ const AchievementSystem: React.FC<AchievementSystemProps> = ({
     try {
       await onUnlock(achievementId);
       
-      setUnlockedAchievements(prev => new Set([...prev, achievementId]));
+      setUnlockedAchievements(prev => {
+        const newSet = new Set(prev);
+        newSet.add(achievementId);
+        return newSet;
+      });
       setSuccess('成就已解锁！');
       
       setTimeout(() => setSuccess(null), 3000);
